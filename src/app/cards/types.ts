@@ -20,6 +20,13 @@ export type Card = {
   id: number;
 };
 
+export type TranslatedCard = {
+  picture: string;
+  color: string;
+  points: number;
+  id: number;
+};
+
 type ColorNames = Record<Color, string>;
 type PictureNames = Record<Picture, string>;
 

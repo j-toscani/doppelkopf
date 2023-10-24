@@ -5,7 +5,7 @@ export const german: DeckTranslation = {
     [Picture.Ace]: "Ass",
     [Picture.Jack]: "Bube",
     [Picture.King]: "König",
-    [Picture.Queen]: "Königin",
+    [Picture.Queen]: "Dame",
     [Picture.Ten]: "Zehn",
   },
   colors: {

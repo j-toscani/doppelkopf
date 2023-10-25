@@ -43,3 +43,4 @@ export type DeckTranslation = {
 }
 
 export type GameOrderEntry = { trump: boolean, order: number }
+export type DealtHands = [Array<Card>, Array<Card>, Array<Card>, Array<Card>]

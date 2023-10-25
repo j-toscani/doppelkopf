@@ -1,4 +1,4 @@
-import { Card, Color, DeckTranslation, Picture } from "./types";
+import { Card, Color, Picture } from "./types";
 
 const points: Record<Picture, number> = {
   [Picture.Jack]: 2,
@@ -14,7 +14,7 @@ const isPicture = (v: Picture | string): v is Picture => !!Number(v);
 const colors = Object.values(Color).filter(isColor);
 const pictures = Object.values(Picture).filter(isPicture);
 
-const copies = [1,2] as const
+export const copies = [1,2] as const
 export const cards: Array<Card> = copies.flatMap((copy) => colors.flatMap((color) =>
   pictures.map((picture) => ({
     picture,

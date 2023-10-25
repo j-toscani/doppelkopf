@@ -13,14 +13,19 @@ export enum Picture {
   Ace,
 }
 
-type CardId = `${1 | 2}${Color}${Picture}`
+export type CardId = `${1 | 2}${Color}${Picture}`
 
-export type Card = {
+export interface Card {
   picture: Picture;
   color: Color;
   points: number;
   id: CardId;
 };
+
+export interface OrderedCard extends Card {
+  order: number,
+  trump: boolean
+} 
 
 export type TranslatedCard = {
   picture: string;
@@ -36,3 +41,5 @@ export type DeckTranslation = {
     colors: ColorNames;
     pictures: PictureNames;
 }
+
+export type GameOrderEntry = { trump: boolean, order: number }

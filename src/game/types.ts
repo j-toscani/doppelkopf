@@ -13,18 +13,20 @@ export enum Picture {
   Ace,
 }
 
+type CardId = `${1 | 2}${Color}${Picture}`
+
 export type Card = {
   picture: Picture;
   color: Color;
   points: number;
-  id: number;
+  id: CardId;
 };
 
 export type TranslatedCard = {
   picture: string;
   color: string;
   points: number;
-  id: number;
+  id: CardId;
 };
 
 type ColorNames = Record<Color, string>;

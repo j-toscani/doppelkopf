@@ -14,18 +14,12 @@ const isPicture = (v: Picture | string): v is Picture => !!Number(v);
 const colors = Object.values(Color).filter(isColor);
 const pictures = Object.values(Picture).filter(isPicture);
 
-const cards: Array<Card> = colors.flatMap((color) =>
+const copies = [1,2] as const
+export const cards: Array<Card> = copies.flatMap((copy) => colors.flatMap((color) =>
   pictures.map((picture) => ({
     picture,
     color,
     points: points[picture],
-    id: color + picture,
+    id: `${copy}${color}${picture}`,
   }))
-);
-
-export const applyTranslation = ({ colors, pictures }: DeckTranslation) =>
-  cards.map((card) => ({
-    ...card,
-    color: colors[card.color],
-    picture: pictures[card.picture],
-  }));
+));

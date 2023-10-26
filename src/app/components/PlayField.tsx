@@ -1,6 +1,5 @@
 import { Card } from "@/game/types";
 import { FC } from "react";
-import { PlayCard } from "./PlayCard";
 import { PlayerHand } from "./PlayerHand";
 import { OpponentHand } from "./OpponentHand";
 

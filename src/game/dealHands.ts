@@ -1,10 +1,12 @@
 import { cards } from "./cards";
 import { shuffleCards } from "./shuffleCards";
-import { Card } from "./types";
+import { Card, DealtHands } from "./types";
 
-export const dealHands = (handsToDeal: number = 4): Array<Array<Card>> => {
+export const dealHands = (handsToDeal: number = 4): DealtHands => {
   const shuffled = shuffleCards(cards);
-  const hands: Array<Array<Card>> = [];
+  const hands: DealtHands = [
+    [], [], [], []
+  ];
 
   shuffled.forEach((card, index) =>
     Array.isArray(hands[index % handsToDeal])

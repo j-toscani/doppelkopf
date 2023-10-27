@@ -1,39 +1,35 @@
-import { copies } from "../cards";
-import { CardId, Color, GameOrderEntry, Picture } from "../types";
-import { makeCards } from "./utils";
+import { Color, GameOrder, Picture } from "../types";
+import { createCardOrderEntries, reduceToGameOrder } from "./utils";
 
-export const defaultOrder: Record<CardId, GameOrderEntry> = [
-  ...makeCards({
+export const defaultOrder: GameOrder = [
+  ...createCardOrderEntries({
     pictures: [Picture.King, Picture.Ten, Picture.Ace],
     colors: [Color.Club, Color.Spade],
     trump: false,
   }),
-  ...makeCards({
+  ...createCardOrderEntries({
     pictures: [Picture.King, Picture.Ace],
     colors: [Color.Hearth],
     trump: false,
   }),
-  ...makeCards({
+  ...createCardOrderEntries({
     pictures: [Picture.King, Picture.Ten, Picture.Ace],
     colors: [Color.Diamond],
     trump: true,
   }),
-  ...makeCards({
+  ...createCardOrderEntries({
     pictures: [Picture.Jack],
-    colors: [Color.Diamond, Color.Hearth, Color.Club, Color.Spade],
+    colors: [Color.Diamond, Color.Hearth, Color.Spade, Color.Club],
     trump: true,
   }),
-  ...makeCards({
+  ...createCardOrderEntries({
     pictures: [Picture.Queen],
-    colors: [Color.Diamond, Color.Hearth, Color.Club, Color.Spade],
+    colors: [Color.Diamond, Color.Hearth, Color.Spade, Color.Club],
     trump: true,
   }),
-  ...makeCards({
+  ...createCardOrderEntries({
     pictures: [Picture.Ten],
     colors: [Color.Hearth],
     trump: true,
   }),
-].reduce((acc, curr, index) => {
-  acc[curr.id] = { order: index + 1, trump: curr.trump };
-  return acc;
-}, {} as Record<CardId, GameOrderEntry>);
+].reduce(reduceToGameOrder, {} as GameOrder);

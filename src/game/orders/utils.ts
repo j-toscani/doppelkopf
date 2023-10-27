@@ -1,5 +1,13 @@
 import { cards, copies } from "../cards";
-import { CardId, Color, GameOrderEntry, OrderedCard, Picture } from "../types";
+import {
+  CardId,
+  CardOrderTempValue,
+  Color,
+  GameOrder,
+  GameOrderEntry,
+  OrderedCard,
+  Picture,
+} from "../types";
 
 type MakeCardsInput = {
   pictures: Array<Picture>;
@@ -7,19 +15,28 @@ type MakeCardsInput = {
   trump: boolean;
 };
 
-type MakeCardsOutput = Array<{ id: CardId; trump: boolean }>;
-
-export const makeCards = (input: MakeCardsInput): MakeCardsOutput =>
-  copies.flatMap((batch) =>
-    input.colors.flatMap((color) =>
-      input.pictures.map((picture) => ({
+export const createCardOrderEntries = (
+  input: MakeCardsInput
+): Array<CardOrderTempValue> =>
+  input.colors.flatMap((color) =>
+    input.pictures.flatMap((picture) =>
+      copies.flatMap((batch) => ({
         id: `${batch}${color}${picture}`,
         trump: input.trump,
       }))
     )
   );
 
-export const applyOrder = (order: Array<GameOrderEntry>): Array<OrderedCard> =>
+export const reduceToGameOrder = (
+  acc: GameOrder,
+  curr: CardOrderTempValue,
+  index: number
+) => {
+  acc[curr.id] = { order: index + 1, trump: curr.trump };
+  return acc;
+};
+
+export const applyOrder = (order: GameOrder): Array<OrderedCard> =>
   cards.map((card) => ({
     ...card,
     order: order[card.id].order,

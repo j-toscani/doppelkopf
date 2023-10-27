@@ -1,13 +1,19 @@
-import { Card } from "./types";
+type SchuffleCards = <T>(cards: Array<T>) => Array<T>;
 
-export const shuffleCards = (cards: Array<Card>): Array<Card> => {
-    const shuffled: Array<Card> = [];
-    const copy = [...cards];
-    while (copy.length) {
-      const randomIndex = Math.floor(copy.length * Math.random());
-      const [card] = copy.splice(randomIndex, 1);
-      shuffled.push(card);
-    }
-  
-    return shuffled;
-  };
+export const shuffleCards: SchuffleCards = (cards) => {
+  const copy = [...cards];
+
+  let currentIndex = copy.length - 1;
+
+  while (currentIndex > 0) {
+    const current = copy[currentIndex]
+    const randomIndex = Math.floor(currentIndex * Math.random());
+    const random = copy[randomIndex]
+
+    copy[currentIndex] = random
+    copy[randomIndex] = current
+    currentIndex--
+  }
+
+  return copy;
+};

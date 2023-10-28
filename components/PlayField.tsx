@@ -19,6 +19,8 @@ export const PlayField: FC<{
     <div className="absolute -translate-x-1/2 translate-y-1/4 left-1/2 bottom-0 flex items-center">
       <PlayerHand cards={a} />
     </div>
-    <div className="w-96 aspect-square bg-white rounded-xl m-auto"></div>
+    <div className="w-96 aspect-square bg-white rounded-xl m-auto">
+     <h1 className="text-2xl text-black text-center" > Willkommen! </h1>
+    </div>
   </div>
 );

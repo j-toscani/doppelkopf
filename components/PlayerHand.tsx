@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Card } from "../../game/types";
+import { Card } from "../game/types";
 import { PlayCard } from "./PlayCard";
 import { HandOfCards } from "./HandOfCards";
 

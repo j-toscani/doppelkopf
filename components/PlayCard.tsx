@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Card } from "../../game/types";
-import { german } from "../../game/translations";
+import { Card } from "../game/types";
+import { german } from "../game/translations";
 
 import styles from "./Card.module.css";
 

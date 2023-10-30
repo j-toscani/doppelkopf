@@ -20,7 +20,6 @@ export const PlayField: FC<{
       <PlayerHand cards={a} />
     </div>
     <div className="w-96 aspect-square bg-white rounded-xl m-auto">
-     <h1 className="text-2xl text-black text-center" > Willkommen! </h1>
     </div>
   </div>
 );

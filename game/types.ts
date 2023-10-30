@@ -45,4 +45,4 @@ export type DeckTranslation = {
 export type CardOrderTempValue = { id: CardId; trump: boolean };
 export type GameOrderEntry = { trump: boolean, order: number }
 export type GameOrder = Record<CardId, GameOrderEntry>
-export type DealtHands<C = Card> = [Array<C>, Array<C>, Array<C>, Array<C>]
+export type DealtHands<C = OrderedCard> = [Array<C>, Array<C>, Array<C>, Array<C>]

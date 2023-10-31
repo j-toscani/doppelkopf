@@ -1,10 +1,9 @@
-import { cards, copies } from "../cards";
+import { copies } from "../cards";
 import {
-  CardId,
+  Card,
   CardOrderTempValue,
   Color,
   GameOrder,
-  GameOrderEntry,
   OrderedCard,
   Picture,
 } from "../types";
@@ -36,9 +35,32 @@ export const reduceToGameOrder = (
   return acc;
 };
 
-export const applyOrder = (order: GameOrder): Array<OrderedCard> =>
+export const applyOrder = (
+  cards: Array<Card>,
+  order: GameOrder
+): Array<OrderedCard> =>
   cards.map((card) => ({
     ...card,
     order: order[card.id].order,
     trump: order[card.id].trump,
   }));
+
+type SchuffleCards = <T>(cards: Array<T>) => Array<T>;
+
+export const shuffleCards: SchuffleCards = (cards) => {
+  const copy = [...cards];
+
+  let currentIndex = copy.length - 1;
+
+  while (currentIndex > 0) {
+    const current = copy[currentIndex];
+    const randomIndex = Math.floor(currentIndex * Math.random());
+    const random = copy[randomIndex];
+
+    copy[currentIndex] = random;
+    copy[randomIndex] = current;
+    currentIndex--;
+  }
+
+  return copy;
+};

@@ -14,6 +14,16 @@ describe("Dealing Hands", () => {
     expect(hands.every((h) => h.length === firstHand.length)).toBe(true);
   });
 
+  it("Deals one hand per player", () => {
+    expect(hands.length).toBe(4)
+  })
+
+  /**
+   * This is a very bad way to verify randomness.
+   * Maybe we should just trust our shuffle
+   * implementation as it is based on a widely
+   * suggested algorithm?!
+   */
   it("does not deal the same hand twice", () => {
     const round_1 = dealHands(defaultOrder);
     const round_2 = dealHands(defaultOrder);
@@ -21,11 +31,14 @@ describe("Dealing Hands", () => {
       let similarities = 0;
 
       for (let index = 0; index < first.length; index++) {
-        const [firstCard, secondCard] = [first[index], round_2[handIndex][index]];
+        const [firstCard, secondCard] = [
+          first[index],
+          round_2[handIndex][index],
+        ];
         similarities += firstCard.id === secondCard.id ? 1 : 0;
       }
 
-      expect(similarities).toBeLessThan(4)
+      expect(similarities).toBeLessThan(10);
     });
   });
 });

@@ -8,6 +8,13 @@ import {
   Picture,
 } from "../types";
 
+/**
+ * Utilities are integration tested by testing 
+ * all card orders. Except for `shuffleCards`,
+ * which is an implementation of Fisher-Yates shuffle
+ * @see https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+ */
+
 type MakeCardsInput = {
   pictures: Array<Picture>;
   colors: Array<Color>;
@@ -64,3 +71,5 @@ export const shuffleCards: SchuffleCards = (cards) => {
 
   return copy;
 };
+
+export const sortCards = (a: OrderedCard, b: OrderedCard) => a.order - b.order;

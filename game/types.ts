@@ -1,3 +1,5 @@
+import type React from "react";
+
 export enum Color {
   Spade = 1,
   Hearth,
@@ -34,12 +36,15 @@ export type TranslatedCard = {
   id: CardId;
 };
 
+type ColorSvgs = Record<Color, React.ReactElement>;
 type ColorNames = Record<Color, string>;
 type PictureNames = Record<Picture, string>;
 
 export type DeckTranslation = {
-    colors: ColorNames;
-    pictures: PictureNames;
+    colorNames: ColorNames;
+    pictureLetters: PictureNames;
+    pictureLabels: PictureNames;
+    colorSvgs: ColorSvgs;
 }
 
 export type CardOrderTempValue = { id: CardId; trump: boolean };

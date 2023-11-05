@@ -36,7 +36,6 @@ export type TranslatedCard = {
   id: CardId;
 };
 
-type ColorSvgs = Record<Color, React.ReactElement>;
 type ColorNames = Record<Color, string>;
 type PictureNames = Record<Picture, string>;
 
@@ -44,7 +43,6 @@ export type DeckTranslation = {
     colorNames: ColorNames;
     pictureLetters: PictureNames;
     pictureLabels: PictureNames;
-    colorSvgs: ColorSvgs;
 }
 
 export type CardOrderTempValue = { id: CardId; trump: boolean };

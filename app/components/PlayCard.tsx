@@ -1,10 +1,23 @@
 "use client";
-import { DragEventHandler, FC, useState } from "react";
+import { FC } from "react";
 import { Card, Color } from "../../game/types";
 import { german } from "../../game/translations";
 
+import Heart from "../assets/hearts.svg";
+import Club from "../assets/clubs.svg";
+import Spade from "../assets/spades.svg";
+import Diamond from "../assets/diamonds.svg";
+
 import styles from "./Card.module.css";
 import { useDraggableCard } from "../hooks/useDraggableCards";
+
+const colorSvgs = {
+  [Color.Hearth]: <Heart />,
+  [Color.Club]: <Club />,
+  [Color.Diamond]: <Diamond />,
+  [Color.Spade]: <Spade />,
+};
+
 const positions = ["top-4", "bottom-4"].flatMap((v) =>
   ["left-4", "right-4"].map((h) => `absolute ${v} ${h}`)
 );
@@ -22,9 +35,12 @@ export const PlayCard: FC<PropType> = ({
   onCardMoved,
   className,
 }) => {
-  const { onDragEnd, onDragStart, isDragging} = useDraggableCard(card, onCardMoved)
+  const { onDragEnd, onDragStart, isDragging } = useDraggableCard(
+    card,
+    onCardMoved
+  );
 
-  const color = german.colorSvgs[card.color];
+  const color = colorSvgs[card.color];
   const picture = german.pictureLetters[card.picture];
   const cardColor = [Color.Diamond, Color.Hearth].includes(card.color)
     ? styles["card--red"]

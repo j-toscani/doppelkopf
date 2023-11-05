@@ -1,8 +1,8 @@
 import { Color, DeckTranslation, Picture } from "./types";
-import Heart from "../assets/hearts.svg";
-import Club from "../assets/clubs.svg";
-import Spade from "../assets/spades.svg";
-import Diamond from "../assets/diamonds.svg";
+import Heart from "../app/assets/hearts.svg";
+import Club from "../app/assets/clubs.svg";
+import Spade from "../app/assets/spades.svg";
+import Diamond from "../app/assets/diamonds.svg";
 
 const colorSvgs = {
   [Color.Hearth]: <Heart />,

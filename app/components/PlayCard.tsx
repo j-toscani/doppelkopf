@@ -8,7 +8,7 @@ import Club from "../assets/clubs.svg";
 import Spade from "../assets/spades.svg";
 import Diamond from "../assets/diamonds.svg";
 
-import styles from "./Card.module.css";
+import styles from "./Card.module.scss";
 import { useDraggableCard } from "../hooks/useDraggableCards";
 
 const colorSvgs = {
@@ -52,9 +52,7 @@ export const PlayCard: FC<PropType> = ({
 
   return (
     <li
-      className={`${className} ${styles.card} ${cardColor} ${
-        styles["card--player"]
-      } ${draggable ? "cursor-pointer" : ""}   ${
+      className={`${className} ${cardColor} ${styles["card--player"]} ${
         isDragging ? styles["card--is-dragging"] : ""
       }`}
       title={cardTitle}

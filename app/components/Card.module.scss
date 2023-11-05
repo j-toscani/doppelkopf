@@ -1,0 +1,43 @@
+.card {
+  @apply relative w-40 h-60 flex justify-center items-center p-4 rounded-md;
+
+  &--empty {
+    @extend .card;
+    @apply bg-white text-black border-black border;
+    @apply p-4;
+
+    &--pattern {
+      @apply w-full h-full rounded-md;
+      background-repeat: repeat;
+      background-position: center;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10px" height="10px"><circle strokeWidth="1"  fill="%23ddd" cy="5" cx="5" r="2"></circle></svg>');
+    }
+  }
+
+  &--player {
+    @extend .card;
+    @apply bg-white text-black border-black border;
+    @apply transition-colors;
+
+    &[draggable] {
+      @apply cursor-pointer;
+    }
+  }
+
+  &--red {
+    @apply fill-red-600 text-red-600;
+  }
+
+  &--black {
+    @apply fill-black;
+  }
+
+  &--is-dragging {
+    @apply bg-gray-300;
+    @apply opacity-95;
+  }
+}
+
+.card-picture--letter {
+  @apply text-center text-lg;
+}

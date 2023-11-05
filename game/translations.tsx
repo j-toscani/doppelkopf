@@ -1,15 +1,4 @@
 import { Color, DeckTranslation, Picture } from "./types";
-import Heart from "../assets/hearts.svg";
-import Club from "../assets/clubs.svg";
-import Spade from "../assets/spades.svg";
-import Diamond from "../assets/diamonds.svg";
-
-const colorSvgs = {
-  [Color.Hearth]: <Heart />,
-  [Color.Club]: <Club />,
-  [Color.Diamond]: <Diamond />,
-  [Color.Spade]: <Spade />,
-};
 
 export const german: DeckTranslation = {
   pictureLabels: {
@@ -32,5 +21,4 @@ export const german: DeckTranslation = {
     [Color.Diamond]: "Karo",
     [Color.Spade]: "Piek",
   },
-  colorSvgs,
 };

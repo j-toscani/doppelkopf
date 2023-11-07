@@ -1,4 +1,4 @@
-import { OrderedCard } from "../../game/types";
+import { OrderedCard } from "../game/types";
 import { FC } from "react";
 import { PlayerHand } from "./PlayerHand";
 import { OpponentHand } from "./OpponentHand";

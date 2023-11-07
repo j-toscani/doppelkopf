@@ -1,7 +1,7 @@
 "use client";
 
 import { DragEventHandler, useState } from "react";
-import { OrderedCard } from "../../game/types";
+import { OrderedCard } from "../game/types";
 
 import styles from "./Table.module.css";
 import { PlayCard } from "./PlayCard";

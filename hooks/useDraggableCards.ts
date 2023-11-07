@@ -1,5 +1,5 @@
 import { DragEventHandler, useState } from "react";
-import { Card } from "../../game/types";
+import { Card } from "../game/types";
 
 export const useDraggableCard = (
   card: Card,

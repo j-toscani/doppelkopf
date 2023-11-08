@@ -10,6 +10,7 @@ import { dealHands } from "@/game/dealHands";
 
 export const PlayField: FC = () => {
   const hand = dealHands()[0];
+
   return (
     <GameContextProvider hand={hand}>
       <div className="relative flex h-screen">

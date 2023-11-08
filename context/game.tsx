@@ -24,25 +24,25 @@ type GameContext = {
 
 export const GameContext = createContext<GameContext | null>(null);
 
-export const GameContextProvider: FC<PropsWithChildren<{hand: Array<Card>}>> = ({ children }) => {
+export const GameContextProvider: FC<PropsWithChildren<{hand: Array<Card>}>> = ({ children, hand }) => {
   const [order, setOrder] = useState<GameOrder>(defaultOrder);
-  const [hand, setHand] = useState<GameContext["hand"]>([]);
+  const [orderedHand, setOrderedHand] = useState<GameContext["hand"]>([]);
   const [table, setTable] = useState<Array<OrderedCard>>([]);
 
   const playCard = (card: OrderedCard) => {
-    setHand(hand.filter((inHand) => inHand.id !== card.id));
+    setOrderedHand(orderedHand.filter((inHand) => inHand.id !== card.id));
     setTable([...table, card]);
   };
 
   useEffect(() => {
     const orderedCards = applyOrder(hand, order);
     sortHand(orderedCards);
-    setHand(orderedCards);
-  }, [setHand, order, hand]);
+    setOrderedHand(orderedCards);
+  }, [setOrderedHand, order, hand]);
 
   return (
     <GameContext.Provider
-      value={{ hand, table, canPlayCard: true, playCard, opponents }}
+      value={{ hand: orderedHand, table, canPlayCard: true, playCard, opponents }}
     >
       {children}
     </GameContext.Provider>

@@ -1,15 +1,14 @@
 "use client";
 import { FC } from "react";
-import { Card, Color } from "../game/types";
-import { german } from "../game/translations";
+import { Color, OrderedCard } from "@/game/types";
+import { german } from "@/game/translations";
 
-import Heart from "../assets/hearts.svg";
-import Club from "../assets/clubs.svg";
-import Spade from "../assets/spades.svg";
-import Diamond from "../assets/diamonds.svg";
+import Heart from "@/assets/hearts.svg";
+import Club from "@/assets/clubs.svg";
+import Spade from "@/assets/spades.svg";
+import Diamond from "@/assets/diamonds.svg";
 
-import styles from "./Card.module.scss";
-import { useDraggableCard } from "../hooks/useDraggableCards";
+import styles from "@/styles/Card.module.scss";
 
 const colorSvgs = {
   [Color.Hearth]: <Heart />,
@@ -23,23 +22,12 @@ const positions = ["top-4", "bottom-4"].flatMap((v) =>
 );
 
 type PropType = {
-  card: Card;
+  card: OrderedCard;
   className?: string;
   draggable?: boolean;
-  onCardMoved: (id: string) => void;
 };
 
-export const PlayCard: FC<PropType> = ({
-  card,
-  draggable = true,
-  onCardMoved,
-  className,
-}) => {
-  const { onDragEnd, onDragStart, isDragging } = useDraggableCard(
-    card,
-    onCardMoved
-  );
-
+export const PlayCard: FC<PropType> = ({ card, className }) => {
   const color = colorSvgs[card.color];
   const picture = german.pictureLetters[card.picture];
   const cardColor = [Color.Diamond, Color.Hearth].includes(card.color)
@@ -51,15 +39,10 @@ export const PlayCard: FC<PropType> = ({
   }`;
 
   return (
-    <li
-      className={`${className} ${cardColor} ${styles["card--player"]} ${
-        isDragging ? styles["card--is-dragging"] : ""
-      }`}
+    <span
+      className={`${className} ${cardColor} ${styles["card--player"]}`}
       title={cardTitle}
       id={card.id}
-      draggable={draggable}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
     >
       {positions.map((position) => (
         <span key={position} className={position}>
@@ -73,6 +56,6 @@ export const PlayCard: FC<PropType> = ({
         </span>
       ))}
       <div>{color}</div>
-    </li>
+    </span>
   );
 };

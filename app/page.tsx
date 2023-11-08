@@ -1,13 +1,9 @@
-import { dealHands } from "../game/dealHands";
-import { PlayField } from "../components/PlayField";
-import { defaultOrder } from "../game/orders";
+import { PlayField } from "@/components/PlayField";
 
 export default function Home() {
-  const hands = dealHands(defaultOrder)
-
   return (
     <main className="overflow-hidden">
-      <PlayField hands={hands}/>
+      <PlayField />
     </main>
   );
 }

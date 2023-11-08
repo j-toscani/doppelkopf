@@ -1,19 +1,19 @@
 import { cards } from "./cards";
-import { applyOrder, shuffleCards } from "./orders/utils";
-import { DealtHands, GameOrder, OrderedCard } from "./types";
+import { shuffleCards, sortCards } from "./orders/utils";
+import { Card, DealtHands, OrderedCard } from "./types";
 
 const HANDS_TO_DEAL = 4;
+export const sortHand = (hand: Array<OrderedCard>) => hand.sort(sortCards);
 
-export const dealHands = (order: GameOrder): DealtHands => {
-  const cardsWithOrder = applyOrder(cards, order);
-  const shuffled = shuffleCards(cardsWithOrder);
-  const hands: DealtHands<OrderedCard> = [[], [], [], []];
+export const dealHands = (): DealtHands<Card> => {
+  const shuffled = shuffleCards(cards);
+  const hands: DealtHands<Card> = [[], [], [], []];
 
   shuffled.forEach((card, index) =>
     Array.isArray(hands[index % HANDS_TO_DEAL])
       ? hands[index % HANDS_TO_DEAL].push(card)
       : (hands[index % HANDS_TO_DEAL] = [card])
   );
-  hands.forEach((hand) => hand.sort((a, b) => a.order - b.order));
+
   return hands;
 };

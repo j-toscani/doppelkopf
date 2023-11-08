@@ -1,20 +1,25 @@
-"use client"
+"use client";
 
-import { FC, useState } from "react";
-import { Card } from "../game/types";
+import { FC } from "react";
 import { PlayCard } from "./PlayCard";
 import { HandOfCards } from "./HandOfCards";
+import { useGame } from "@/hooks/useGame";
+import { DraggableCard } from "./DraggableCard";
+import { OpponentHand } from "./OpponentHand";
+import { TablePosition } from "@/game/table";
 
-export const PlayerHand: FC<{ cards: Array<Card> }> = ({ cards }) => {
-  const [played, setPlayed] = useState<Array<string>>([])
-  const onCardMoved = (id: string) => {
-    setPlayed([...played, id])
-  }
+export const PlayerHand: FC = () => {
+  const { hand, playCard } = useGame();
 
-  return (
-  <HandOfCards maxCards={cards.length} cardsPlayed={played.length}>
-    {cards.filter((card) => !played.includes(card.id)).map((card) => (
-      <PlayCard key={card.id} card={card} onCardMoved={onCardMoved} />
-    ))}
-  </HandOfCards>
-)};
+  return hand.length === 0 ? (
+    <OpponentHand position={TablePosition.BOTTOM} />
+  ) : (
+    <HandOfCards maxCards={10} cardsPlayed={10 - hand.length}>
+      {hand.map((card) => (
+        <DraggableCard key={card.id} card={card} playCard={playCard}>
+          <PlayCard card={card} />
+        </DraggableCard>
+      ))}
+    </HandOfCards>
+  );
+};

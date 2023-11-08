@@ -1,9 +1,9 @@
 import { DragEventHandler, useState } from "react";
-import { Card } from "../game/types";
+import { Card, OrderedCard } from "../game/types";
 
 export const useDraggableCard = (
-  card: Card,
-  onCardMoved: (id: string) => void
+  card: OrderedCard,
+  onCardMoved: (card: OrderedCard) => void
 ) => {
   const [isDragging, setIsDragging] = useState(false);
 
@@ -13,7 +13,7 @@ export const useDraggableCard = (
   };
   const onDragEnd: DragEventHandler = (e) => {
     if (e.dataTransfer.dropEffect === "move") {
-      onCardMoved(card.id);
+      onCardMoved(card);
     }
     setIsDragging(false);
   };

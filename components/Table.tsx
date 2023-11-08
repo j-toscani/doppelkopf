@@ -1,10 +1,10 @@
 "use client";
 
-import { DragEventHandler, useState } from "react";
-import { OrderedCard } from "../game/types";
+import { DragEventHandler, useRef, useState } from "react";
 
-import styles from "./Table.module.css";
+import styles from "@/styles/Table.module.css";
 import { PlayCard } from "./PlayCard";
+import { useGame } from "../hooks/useGame";
 
 const onDragEnter: DragEventHandler = (e) => e.preventDefault();
 const cardPositionClasses = [
@@ -15,42 +15,40 @@ const cardPositionClasses = [
 ];
 
 export const Table = () => {
-  const [dropped, setDropped] = useState<Array<OrderedCard>>([]);
+  const { table } = useGame();
+  const tableRef = useRef<HTMLUListElement>(null);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
   const onDragOver: DragEventHandler = (e) => {
     e.preventDefault();
 
-    if (dropped.length >= 4) return
+    if (table.length >= 4) return;
     e.dataTransfer.dropEffect = "move";
-    
-    if (isDraggingOver) return;
-    setIsDraggingOver(true);
+
+    if (isDraggingOver || !tableRef.current) return;
+    tableRef.current.classList.replace("bg-white", "bg-gray-300");
+    console.log("replace")
   };
-  const onDragLeave: DragEventHandler = (e) => {
+  const onDragEnd: DragEventHandler = (e) => {
     setIsDraggingOver(false);
+    if (!tableRef.current || isDraggingOver) return;
+    tableRef.current.classList.replace("bg-gray-300", "bg-white");
   };
-  const onDrop: DragEventHandler = (e) => {
-    const card = e.dataTransfer.getData("application/doppelkopf");
-    setDropped([...dropped, JSON.parse(card)]);
-    setIsDraggingOver(false);
-  };
+
   return (
     <ul
-      className={styles.table}
-      style={{ backgroundColor: isDraggingOver ? "#ddd" : "white" }}
+      className={`${styles.table} bg-white`}
+      ref={tableRef}
       onDragEnter={onDragEnter}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
+      onDragLeave={onDragEnd}
+      onDrop={onDragEnd}
       onDragOver={onDragOver}
     >
-      {dropped.map((card, index) => (
+      {table.map((card, index) => (
         <PlayCard
           className={styles[cardPositionClasses[index]]}
           key={card.id}
           card={card}
-          onCardMoved={() => {}}
-          draggable={false}
         />
       ))}
     </ul>

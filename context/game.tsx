@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { GameOrder, OrderedCard } from "@/game/types";
+import { Card, GameOrder, OrderedCard } from "@/game/types";
 import { dealHands, sortHand } from "@/game/dealHands";
 import { OpponentState, opponents } from "@/game/opponent";
 import { defaultOrder } from "@/game/orders";
@@ -24,7 +24,7 @@ type GameContext = {
 
 export const GameContext = createContext<GameContext | null>(null);
 
-export const GameContextProvider: FC<PropsWithChildren> = ({ children }) => {
+export const GameContextProvider: FC<PropsWithChildren<{hand: Array<Card>}>> = ({ children }) => {
   const [order, setOrder] = useState<GameOrder>(defaultOrder);
   const [hand, setHand] = useState<GameContext["hand"]>([]);
   const [table, setTable] = useState<Array<OrderedCard>>([]);
@@ -35,11 +35,10 @@ export const GameContextProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   useEffect(() => {
-    const dealtHand = dealHands()[0];
-    const orderedCards = applyOrder(dealtHand, order);
+    const orderedCards = applyOrder(hand, order);
     sortHand(orderedCards);
     setHand(orderedCards);
-  }, [setHand, order]);
+  }, [setHand, order, hand]);
 
   return (
     <GameContext.Provider

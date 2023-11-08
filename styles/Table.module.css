@@ -1,0 +1,38 @@
+.table {
+  grid-template-areas:
+    ". top ."
+    "left . right"
+    ". player .";
+  @apply w-96 h-96 rounded-xl m-auto;
+  @apply grid grid-cols-3 grid-rows-3;
+}
+
+.area--top {
+  @apply place-self-center;
+  grid-area: top;
+}
+.area--left {
+  @apply place-self-center;
+  grid-area: left;
+}
+.area--right {
+  @apply place-self-center;
+  grid-area: right;
+}
+.area--player {
+  @apply place-self-center;
+  grid-area: player;
+}
+
+.hand--left {
+  @apply absolute -translate-x-1/2 -translate-y-1/2 rotate-90 left-0 top-1/2 flex items-center;
+}
+.hand--right {
+  @apply absolute translate-x-1/2 -translate-y-1/2 -rotate-90 right-0 top-1/2 flex items-center;
+}
+.hand--top {
+  @apply absolute -translate-x-1/2 -translate-y-1/2 rotate-180 left-1/2 top-0 flex items-center;
+}
+.hand--bottom {
+  @apply absolute flex items-center -translate-x-1/2 translate-y-1/4 left-1/2 bottom-0;
+}

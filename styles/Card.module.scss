@@ -32,9 +32,11 @@
     @apply fill-black;
   }
 
-  &--is-dragging > * {
-    @apply bg-gray-300;
+  &--is-dragging {
     @apply opacity-95;
+    & > * {
+      @apply bg-gray-300;
+    }
   }
 }
 

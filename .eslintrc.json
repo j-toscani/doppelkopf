@@ -1,6 +1,5 @@
 {
 	"reportUnusedDisableDirectives": true,
-	"extends": ["eslint:recommended", "prettier"],
 	"rules": {
 		"eqeqeq": 2,
 		"no-unused-vars": [2, { "varsIgnorePattern": "_", "argsIgnorePattern": "_" }],

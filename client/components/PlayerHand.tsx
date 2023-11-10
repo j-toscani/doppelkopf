@@ -3,10 +3,10 @@
 import { FC } from "react";
 import { PlayCard } from "./PlayCard";
 import { HandOfCards } from "./HandOfCards";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "@/client/hooks/useGame";
 import { DraggableCard } from "./DraggableCard";
 import { OpponentHand } from "./OpponentHand";
-import { TablePosition } from "@/game/table";
+import { TablePosition } from "@/client/game/table";
 
 export const PlayerHand: FC = () => {
   const { hand, playCard } = useGame();

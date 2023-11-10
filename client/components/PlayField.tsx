@@ -3,10 +3,10 @@ import { PlayerHand } from "./PlayerHand";
 import { OpponentHand } from "./OpponentHand";
 
 import { Table } from "./Table";
-import { GameContextProvider } from "@/context/game";
+import { GameContextProvider } from "@/client/context/game";
 import styles from "@/styles/Table.module.css";
-import { TablePosition } from "@/game/table";
-import { dealHands } from "@/game/dealHands";
+import { TablePosition } from "@/client/game/table";
+import { dealHands } from "@/client/game/dealHands";
 
 export const PlayField: FC = () => {
   const hand = dealHands()[0];

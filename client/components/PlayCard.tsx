@@ -1,7 +1,7 @@
 "use client";
 import { FC } from "react";
-import { Color, OrderedCard } from "@/game/types";
-import { german } from "@/game/translations";
+import { Color, OrderedCard } from "@/client/game/types";
+import { german } from "@/client/game/translations";
 
 import Heart from "@/assets/hearts.svg";
 import Club from "@/assets/clubs.svg";

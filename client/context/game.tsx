@@ -8,11 +8,11 @@ import {
   useMemo,
   useState,
 } from "react";
-import { Card, GameOrder, OrderedCard } from "@/game/types";
-import { dealHands, sortHand } from "@/game/dealHands";
-import { OpponentState, opponents } from "@/game/opponent";
-import { defaultOrder } from "@/game/orders";
-import { applyOrder, sortCards } from "@/game/orders/utils";
+import { Card, GameOrder, OrderedCard } from "@/client/game/types";
+import { dealHands, sortHand } from "@/client/game/dealHands";
+import { OpponentState, opponents } from "@/client/game/opponent";
+import { defaultOrder } from "@/client/game/orders";
+import { applyOrder, sortCards } from "@/client/game/orders/utils";
 
 type GameContext = {
   canPlayCard: boolean;

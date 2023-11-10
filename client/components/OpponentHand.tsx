@@ -3,8 +3,8 @@ import { FC } from "react";
 
 import styles from "@/styles/Card.module.scss";
 import { HandOfCards } from "./HandOfCards";
-import { TablePosition } from "@/game/table";
-import { useGame } from "@/hooks/useGame";
+import { TablePosition } from "@/client/game/table";
+import { useGame } from "@/client/hooks/useGame";
 
 export const OpponentHand: FC<{ position: TablePosition }> = ({ position }) => {
   const { opponents } = useGame();

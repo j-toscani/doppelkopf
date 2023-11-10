@@ -1,7 +1,14 @@
-import { Elysia } from "elysia";
+import { Elysia } from 'elysia';
+import { Logger } from './logger';
+import { handleError } from './errors';
 
-const PORT = 3000
+const PORT = 4000;
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(PORT);
+const app = new Elysia();
 
-console.log(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);
+app.onRequest((request) => Logger.info(`${request.path} =>`));
+app.onError(handleError);
+
+app.get('/', () => 'Hello Elysia').listen(PORT);
+
+Logger.system(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

@@ -1,7 +1,6 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# Install all bun dependencies and run tests, linting and typechecks
 
-name: Node.js CI
+name: Bun Linting and Tests
 
 on:
   push:
@@ -10,16 +9,30 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
-
+  test-client:
+    name: "Test Client Code"
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Run tests on Node v18.x
-      uses: actions/setup-node@v3
+    - uses: oven-sh/setup-bun@v1
       with:
-        node-version: 18.x
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run test:ci
+        bun-version: latest
+    - run: cd client 
+    - run: bun i
+    - run: bun run --cwd client lint
+    - run: bun run --cwd client test:ci
+
+  lint-server:
+    name: "Lint Server Code"
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: oven-sh/setup-bun@v1
+      with:
+        bun-version: latest
+    - run: cd server
+    - run: bun i
+    - run: bun run --cwd server lint
+    - run: bun run --cwd server tsc

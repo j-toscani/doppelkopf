@@ -1,13 +1,7 @@
 {
-  "name": "doppelkopf",
+  "name": "shared",
   "module": "index.ts",
   "type": "module",
-  "scripts": {},
-  "workspaces": [
-    "shared",
-    "client",
-    "server"
-  ],
   "devDependencies": {
     "bun-types": "latest"
   },

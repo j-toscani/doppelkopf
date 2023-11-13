@@ -20,8 +20,8 @@ jobs:
         bun-version: latest
     - run: cd client 
     - run: bun i
-    - run: bun run lint
-    - run: bun run test:ci
+    - run: bun run --cwd client lint
+    - run: bun run --cwd client test:ci
 
   lint-server:
     name: "Lint Server Code"
@@ -34,5 +34,5 @@ jobs:
         bun-version: latest
     - run: cd server
     - run: bun i
-    - run: bun run lint
-    - run: bun run tsc
+    - run: bun run --cwd server lint
+    - run: bun run --cwd server tsc

@@ -2,12 +2,7 @@
   "name": "doppelkopf",
   "module": "index.ts",
   "type": "module",
-  "scripts": {
-    "lint:client": "bun run lint -w client",
-    "test:client": "bun run test:ci -w client",
-    "lint:server": "bun run lint -w client",
-    "test:server": "bun run test:ci -w client"
-  },
+  "scripts": {},
   "workspaces": [
     "shared",
     "client",

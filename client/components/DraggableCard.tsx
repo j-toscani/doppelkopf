@@ -1,14 +1,14 @@
 import { FC, PropsWithChildren } from "react";
-import { OrderedCard } from "@/game/types";
-import { useDraggableCard } from "@/hooks/useDraggableCards";
+import { OrderedCard } from "../game/types";
+import { useDraggableCard } from "../hooks/useDraggableCards";
 
 import styles from "@/styles/Card.module.scss";
-import { useGame } from "@/hooks/useGame";
+import { useGame } from "../hooks/useGame";
 
 export const DraggableCard: FC<
   PropsWithChildren<{
     card: OrderedCard;
-    playCard: (card: OrderedCard) => void;
+    playCard: (_card: OrderedCard) => void;
   }>
 > = ({ card, playCard, children }) => {
   const { canPlayCard } = useGame();

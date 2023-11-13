@@ -3,25 +3,25 @@ import { PlayerHand } from "./PlayerHand";
 import { OpponentHand } from "./OpponentHand";
 
 import { Table } from "./Table";
-import { GameContextProvider } from "@/client/context/game";
+import { GameContextProvider } from "../context/game";
 import styles from "@/styles/Table.module.css";
-import { TablePosition } from "@/client/game/table";
-import { dealHands } from "@/client/game/dealHands";
+import { TablePositions } from "../game/table";
+import { dealHands } from "../game/dealHands";
 
 export const PlayField: FC = () => {
-  const hand = dealHands()[0];
+  const [playerHand] = dealHands();
 
   return (
-    <GameContextProvider hand={hand}>
+    <GameContextProvider hand={playerHand}>
       <div className="relative flex h-screen">
         <div className={styles["hand--left"]}>
-          <OpponentHand position={TablePosition.LEFT} />
+          <OpponentHand position={TablePositions.LEFT} />
         </div>
         <div className={styles["hand--top"]}>
-          <OpponentHand position={TablePosition.TOP} />
+          <OpponentHand position={TablePositions.TOP} />
         </div>
         <div className={styles["hand--right"]}>
-          <OpponentHand position={TablePosition.RIGHT} />
+          <OpponentHand position={TablePositions.RIGHT} />
         </div>
         <div className={styles["hand--bottom"]}>
           <PlayerHand />

@@ -1,4 +1,4 @@
-import { PlayField } from "@/client/components/PlayField";
+import { PlayField } from "../components/PlayField";
 
 export default function Home() {
   return (

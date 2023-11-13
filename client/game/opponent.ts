@@ -1,4 +1,4 @@
-import { TablePosition } from "./table";
+import { TablePositions, TablePosition } from "./table";
 
 export type OpponentState = {
   user: string;
@@ -7,7 +7,7 @@ export type OpponentState = {
 };
 
 export const opponents = [
-    { user: "1", cardsInHand: 10, position: TablePosition.LEFT },
-    { user: "2", cardsInHand: 10, position: TablePosition.TOP },
-    { user: "3", cardsInHand: 10, position: TablePosition.RIGHT },
+    { user: "1", cardsInHand: 10, position: TablePositions.LEFT },
+    { user: "2", cardsInHand: 10, position: TablePositions.TOP },
+    { user: "3", cardsInHand: 10, position: TablePositions.RIGHT },
   ];

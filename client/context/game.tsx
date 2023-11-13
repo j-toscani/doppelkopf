@@ -5,27 +5,26 @@ import {
   PropsWithChildren,
   createContext,
   useEffect,
-  useMemo,
   useState,
 } from "react";
-import { Card, GameOrder, OrderedCard } from "@/client/game/types";
-import { dealHands, sortHand } from "@/client/game/dealHands";
-import { OpponentState, opponents } from "@/client/game/opponent";
-import { defaultOrder } from "@/client/game/orders";
-import { applyOrder, sortCards } from "@/client/game/orders/utils";
+import { Card, GameOrder, OrderedCard } from "../game/types";
+import { sortHand } from "../game/dealHands";
+import { OpponentState, opponents } from "../game/opponent";
+import { defaultOrder } from "../game/orders";
+import { applyOrder } from "../game/orders/utils";
 
 type GameContext = {
   canPlayCard: boolean;
   hand: Array<OrderedCard>;
   opponents: Array<OpponentState>;
   table: Array<OrderedCard>;
-  playCard: (card: OrderedCard) => void;
+  playCard: (_card: OrderedCard) => void;
 };
 
 export const GameContext = createContext<GameContext | null>(null);
 
 export const GameContextProvider: FC<PropsWithChildren<{hand: Array<Card>}>> = ({ children, hand }) => {
-  const [order, setOrder] = useState<GameOrder>(defaultOrder);
+  const [order, _setOrder] = useState<GameOrder>(defaultOrder);
   const [orderedHand, setOrderedHand] = useState<GameContext["hand"]>([]);
   const [table, setTable] = useState<Array<OrderedCard>>([]);
 

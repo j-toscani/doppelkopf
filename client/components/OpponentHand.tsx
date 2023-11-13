@@ -3,12 +3,13 @@ import { FC } from "react";
 
 import styles from "@/styles/Card.module.scss";
 import { HandOfCards } from "./HandOfCards";
-import { TablePosition } from "@/client/game/table";
-import { useGame } from "@/client/hooks/useGame";
+import { TablePosition } from "../game/table";
+import { useGame } from "../hooks/useGame";
+import { FULL_HAND_OF_CARDS_COUNT } from "@/constants";
 
 export const OpponentHand: FC<{ position: TablePosition }> = ({ position }) => {
   const { opponents } = useGame();
-  const cardsInHand = opponents.find(({ position: p }) => position === p)?.cardsInHand ?? 10
+  const cardsInHand = opponents.find(({ position: p }) => position === p)?.cardsInHand ?? FULL_HAND_OF_CARDS_COUNT
 
   return (
   <HandOfCards maxCards={cardsInHand}>

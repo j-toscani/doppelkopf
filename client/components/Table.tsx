@@ -5,6 +5,7 @@ import { DragEventHandler, useRef, useState } from "react";
 import styles from "@/styles/Table.module.css";
 import { PlayCard } from "./PlayCard";
 import { useGame } from "../hooks/useGame";
+import { MAX_PLAYER_COUNT } from "@/constants";
 
 const onDragEnter: DragEventHandler = (e) => e.preventDefault();
 const cardPositionClasses = [
@@ -22,14 +23,13 @@ export const Table = () => {
   const onDragOver: DragEventHandler = (e) => {
     e.preventDefault();
 
-    if (table.length >= 4) return;
+    if (table.length >= MAX_PLAYER_COUNT) return;
     e.dataTransfer.dropEffect = "move";
 
     if (isDraggingOver || !tableRef.current) return;
     tableRef.current.classList.replace("bg-white", "bg-gray-300");
-    console.log("replace")
   };
-  const onDragEnd: DragEventHandler = (e) => {
+  const onDragEnd: DragEventHandler = (_e) => {
     setIsDraggingOver(false);
     if (!tableRef.current || isDraggingOver) return;
     tableRef.current.classList.replace("bg-gray-300", "bg-white");

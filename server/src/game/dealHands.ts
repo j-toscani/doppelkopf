@@ -1,9 +1,8 @@
 import { cards } from "./cards";
-import { shuffleCards, sortCards } from "./orders/utils";
-import { Card, DealtHands, OrderedCard } from "./types";
+import { shuffleCards } from "./orders/utils";
+import { Card, DealtHands } from "shared/types";
 
 const HANDS_TO_DEAL = 4;
-export const sortHand = (hand: Array<OrderedCard>) => hand.sort(sortCards);
 
 export const dealHands = (): DealtHands<Card> => {
   const shuffled = shuffleCards(cards);

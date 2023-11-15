@@ -1,4 +1,4 @@
-import { Card, Color, Picture } from "./types";
+import { Card, Color, Picture } from "shared/types";
 
 const points: Record<Picture, number> = {
   [Picture.Jack]: 2,

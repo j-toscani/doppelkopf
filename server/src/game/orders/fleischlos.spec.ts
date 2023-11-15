@@ -6,7 +6,7 @@ import {
   spadesSolo,
 } from ".";
 import { cards } from "../cards";
-import { Color, Picture } from "../types";
+import { Color, Picture } from "shared/types";
 import { applyOrder, sortCards } from "./utils";
 
 const orderedCards = applyOrder(cards, fleischlosOrder).sort(sortCards);

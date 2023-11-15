@@ -1,8 +1,9 @@
-import { FULL_HAND_OF_CARDS_COUNT, MAX_PLAYER_COUNT } from '@/constants';
+import { FULL_HAND_OF_CARDS_COUNT, MAX_PLAYER_COUNT } from 'shared/constants';
+import { describe, it, expect, beforeEach } from "bun:test";
 import { dealHands } from './dealHands';
 import { defaultOrder } from './orders';
 import { applyOrder } from './orders/utils';
-import { OrderedCard } from './types';
+import { OrderedCard } from 'shared/types';
 
 let hands: Array<Array<OrderedCard>>;
 

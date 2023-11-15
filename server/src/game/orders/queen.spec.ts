@@ -1,6 +1,6 @@
 import { queenSoloOrder } from ".";
 import { cards } from "../cards";
-import { Color, Picture } from "../types";
+import { Color, Picture } from "shared/types";
 import { applyOrder, sortCards } from "./utils";
 
 const orderedCards = applyOrder(cards, queenSoloOrder).sort(sortCards);

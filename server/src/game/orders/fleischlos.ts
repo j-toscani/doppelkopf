@@ -1,4 +1,4 @@
-import { Color, GameOrder, Picture } from "../types";
+import { Color, GameOrder, Picture } from "shared/types";
 import { createCardOrderEntries, reduceToGameOrder } from "./utils";
 
 export const fleischlosOrder: GameOrder = [

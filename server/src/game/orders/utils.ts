@@ -1,12 +1,14 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable prefer-destructuring */
 import { copies } from "../cards";
 import {
   Card,
   CardOrderTempValue,
-  Color,
+  ColorV,
   GameOrder,
   OrderedCard,
-  Picture,
-} from "../types";
+  PictureV,
+} from "shared/types";
 
 /**
  * Utilities are integration tested by testing 
@@ -16,8 +18,8 @@ import {
  */
 
 type MakeCardsInput = {
-  pictures: Array<Picture>;
-  colors: Array<Color>;
+  pictures: Array<PictureV>;
+  colors: Array<ColorV>;
   trump: boolean;
 };
 
@@ -59,7 +61,7 @@ export const shuffleCards: SchuffleCards = (cards) => {
 
   let currentIndex = copy.length - 1;
 
-  while (currentIndex > 0) {
+  while (currentIndex) {
     const current = copy[currentIndex];
     const randomIndex = Math.floor(currentIndex * Math.random());
     const random = copy[randomIndex];
@@ -73,3 +75,4 @@ export const shuffleCards: SchuffleCards = (cards) => {
 };
 
 export const sortCards = (a: OrderedCard, b: OrderedCard) => a.order - b.order;
+export const sortHand = (hand: Array<OrderedCard>) => hand.sort(sortCards);

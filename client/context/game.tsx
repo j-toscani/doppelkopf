@@ -7,11 +7,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Card, GameOrder, OrderedCard } from "../game/types";
-import { sortHand } from "../game/dealHands";
+import { Card, GameOrder, OrderedCard } from "shared/types";
 import { OpponentState, opponents } from "../game/opponent";
-import { defaultOrder } from "../game/orders";
-import { applyOrder } from "../game/orders/utils";
 
 type GameContext = {
   canPlayCard: boolean;

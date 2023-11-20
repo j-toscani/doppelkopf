@@ -1,5 +1,7 @@
-import { HALF_CARD_WIDTH_REM, NO_CARDS_PLAYED } from "@/constants";
 import { PropsWithChildren, FC } from "react";
+
+const NO_CARDS_PLAYED = 0;
+const HALF_CARD_WIDTH_REM = 2
 
 export const HandOfCards: FC<PropsWithChildren<{ maxCards: number, cardsPlayed?: number }>> = ({
   children,

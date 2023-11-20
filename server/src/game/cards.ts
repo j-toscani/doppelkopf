@@ -1,6 +1,6 @@
-import { Card, Color, Picture } from "./types";
+import  { Card, Color, type PictureV, Picture, ColorV } from "shared/types";
 
-const points: Record<Picture, number> = {
+const points: Record<PictureV, number> = {
   [Picture.Jack]: 2,
   [Picture.Queen]: 3,
   [Picture.King]: 4,
@@ -8,8 +8,8 @@ const points: Record<Picture, number> = {
   [Picture.Ace]: 11,
 };
 
-const isColor = (v: Color | string): v is Color => !!Number(v);
-const isPicture = (v: Picture | string): v is Picture => !!Number(v);
+const isColor = (v: ColorV | string): v is ColorV => !!Number(v);
+const isPicture = (v: PictureV | string): v is PictureV => !!Number(v);
 
 const colors = Object.values(Color).filter(isColor);
 const pictures = Object.values(Picture).filter(isPicture);

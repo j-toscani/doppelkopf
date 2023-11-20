@@ -2,7 +2,10 @@
   "name": "doppelkopf",
   "module": "index.ts",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "dev:server": "bun run --cwd server dev",
+    "dev:client": "bun run --cwd client dev"
+  },
   "workspaces": [
     "shared",
     "client",

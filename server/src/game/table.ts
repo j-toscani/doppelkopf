@@ -1,5 +1,5 @@
 import { OpponentState } from './opponent';
-import { OrderedCard } from './types';
+import { OrderedCard } from 'shared/types';
 
 export type Table = Array<OrderedCard>;
 

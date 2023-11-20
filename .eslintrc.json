@@ -26,11 +26,8 @@
 		"prefer-destructuring": [
 			1,
 			{
-				"array": true,
-				"object": true
-			},
-			{
-				"enforceForRenamedProperties": true
+				"object": true,
+				"array": true
 			}
 		]
 	}

@@ -1,4 +1,4 @@
-import { Color, DeckTranslation, Picture } from "./types";
+import { Color, DeckTranslation, Picture } from "shared/types";
 
 export const german: DeckTranslation = {
   pictureLabels: {

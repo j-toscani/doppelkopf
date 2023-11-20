@@ -1,7 +1,6 @@
 'use client';
 import { FC } from 'react';
-import { Color, OrderedCard } from '../game/types';
-import { german } from '../game/translations';
+import { Color, OrderedCard } from 'shared/types';
 
 import Heart from '@/assets/hearts.svg';
 import Club from '@/assets/clubs.svg';
@@ -9,6 +8,7 @@ import Spade from '@/assets/spades.svg';
 import Diamond from '@/assets/diamonds.svg';
 
 import styles from '@/styles/Card.module.scss';
+import { german } from '@/constants/translations';
 
 const colorSvgs = {
 	[Color.Hearth]: <Heart />,
@@ -28,7 +28,7 @@ type PropType = {
 };
 
 export const PlayCard: FC<PropType> = ({ card, className }) => {
-	const cardColor = [Color.Diamond, Color.Hearth].includes(card.color)
+	const cardColor = card.color === Color.Diamond || card.color === Color.Hearth
 		? styles['card--red']
 		: styles['card--black'];
 

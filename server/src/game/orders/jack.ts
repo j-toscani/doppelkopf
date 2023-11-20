@@ -1,14 +1,14 @@
-import { Color, GameOrder, Picture } from "../types";
+import { Color, GameOrder, Picture } from "shared/types";
 import { createCardOrderEntries, reduceToGameOrder } from "./utils";
 
-export const queenSoloOrder: GameOrder = [
+export const jackSoloOrder: GameOrder = [
   ...createCardOrderEntries({
-    pictures: [Picture.Jack, Picture.King, Picture.Ten, Picture.Ace],
+    pictures: [Picture.Queen, Picture.King, Picture.Ten, Picture.Ace],
     colors: [Color.Hearth, Color.Diamond, Color.Spade, Color.Club],
     trump: false,
   }),
   ...createCardOrderEntries({
-    pictures: [Picture.Queen],
+    pictures: [Picture.Jack],
     colors: [Color.Hearth, Color.Diamond, Color.Spade, Color.Club],
     trump: true,
   }),

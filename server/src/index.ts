@@ -1,9 +1,9 @@
 import { Elysia, t } from 'elysia';
 import { Logger } from './logger';
 import { BadRequestError, NotFoundError, handleError } from './errors';
-import { Game, isCardId } from 'shared/types';
 import { createGame, playCard } from './game/game';
 import { randomUUID } from 'crypto';
+import { Game, isCardId } from 'shared/types';
 
 const PORT = 4000;
 

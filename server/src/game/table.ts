@@ -1,16 +1,4 @@
-import { OpponentState } from './opponent';
-import { OrderedCard } from 'shared/types';
-
-export type Table = Array<OrderedCard>;
-
-export const TablePositions = {
-	TOP: 'top',
-	LEFT: 'left',
-	RIGHT: 'right',
-	BOTTOM: 'bottom',
-};
-
-export type TablePosition = typeof TablePositions[keyof typeof TablePositions]
+import { OpponentState, OrderedCard, TablePosition } from 'shared/types';
 
 export const isTablePosition = (position: string): position is TablePosition =>
 	['top', 'left', 'right', 'bottom'].includes(position);

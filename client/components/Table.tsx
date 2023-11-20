@@ -5,7 +5,7 @@ import { DragEventHandler, useRef, useState } from "react";
 import styles from "@/styles/Table.module.css";
 import { PlayCard } from "./PlayCard";
 import { useGame } from "../hooks/useGame";
-import { MAX_PLAYER_COUNT } from "@/constants";
+import { MAX_PLAYER_COUNT } from "shared/constants";
 
 const onDragEnter: DragEventHandler = (e) => e.preventDefault();
 const cardPositionClasses = [

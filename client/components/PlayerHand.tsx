@@ -6,8 +6,7 @@ import { HandOfCards } from "./HandOfCards";
 import { useGame } from "../hooks/useGame";
 import { DraggableCard } from "./DraggableCard";
 import { OpponentHand } from "./OpponentHand";
-import { TablePositions } from "../game/table";
-import { EMPTY_HAND_COUNT, FULL_HAND_OF_CARDS_COUNT } from "@/constants";
+import { EMPTY_HAND_COUNT, FULL_HAND_OF_CARDS_COUNT, TablePositions } from "shared/constants";
 
 export const PlayerHand: FC = () => {
   const { hand, playCard } = useGame();

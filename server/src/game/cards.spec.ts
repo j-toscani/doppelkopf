@@ -13,7 +13,6 @@ describe("Deck of Cards", () => {
     const ids: Record<string, number> = {};
 
     for (let index = 0; index < cards.length; index++) {
-      // eslint-disable-next-line prefer-destructuring
       const { picture, color } = cards[index];
       const id = `${picture}${color}`;
       ids[id] = id in ids ? (ids[id] += 1) : MINIMAL_COPIES_COUNT;

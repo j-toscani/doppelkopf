@@ -1,5 +1,4 @@
 /* eslint-disable no-magic-numbers */
-/* eslint-disable prefer-destructuring */
 import { copies } from "../cards";
 import {
   Card,

@@ -8,7 +8,7 @@ import Spade from '@/assets/spades.svg';
 import Diamond from '@/assets/diamonds.svg';
 
 import styles from '@/styles/Card.module.scss';
-import { german } from '@/constants/translations';
+import { german } from '../constants/translations';
 
 const colorSvgs = {
 	[Color.Hearth]: <Heart />,

@@ -7,9 +7,7 @@
     "dev:client": "bun run --cwd client dev"
   },
   "workspaces": [
-    "shared",
-    "client",
-    "server"
+    "packages/*"
   ],
   "devDependencies": {
     "bun-types": "latest"

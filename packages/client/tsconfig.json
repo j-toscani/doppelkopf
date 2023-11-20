@@ -23,5 +23,4 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./types.d.ts"],
-  "exclude": ["client/node_modules"]
 }

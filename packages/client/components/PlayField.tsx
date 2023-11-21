@@ -5,14 +5,12 @@ import { OpponentHand } from "./OpponentHand";
 import { Table } from "./Table";
 import { GameContextProvider } from "../context/game";
 import styles from "@/styles/Table.module.css";
-import { TablePositions } from "../game/table";
-import { dealHands } from "../game/dealHands";
+import { TablePositions } from "shared";
 
 export const PlayField: FC = () => {
-  const [playerHand] = dealHands();
 
   return (
-    <GameContextProvider hand={playerHand}>
+    <GameContextProvider>
       <div className="relative flex h-screen">
         <div className={styles["hand--left"]}>
           <OpponentHand position={TablePositions.LEFT} />

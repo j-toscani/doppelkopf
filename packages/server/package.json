@@ -2,12 +2,15 @@
   "name": "elysia",
   "version": "1.0.50",
   "scripts": {
+    "test": "bun test",
     "lint": "eslint --max-warnings 0 --ext js,ts src",
-    "tsc" : "tsc --noEmit",
+    "tsc": "tsc --noEmit",
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/cors": "^0.7.2",
+    "elysia": "latest",
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "bun-types": "latest",
@@ -16,5 +19,5 @@
     "eslint": "^8.49.0",
     "typescript": "^5.0.0"
   },
-  "module": "src/index.js"
+  "module": "src/index.ts"
 }

@@ -16,7 +16,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.5",
-    "shared": "workspaces:*"
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",

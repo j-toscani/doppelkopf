@@ -3,8 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev:server": "bun run --cwd server dev",
-    "dev:client": "bun run --cwd client dev"
+    "dev:server": "bun run --cwd packages/server dev",
+    "dev:client": "bun run --cwd packages/client dev"
   },
   "workspaces": [
     "packages/*"

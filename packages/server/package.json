@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "elysia": "latest",
-    "shared": "workspaces:*"
+    "shared": "workspace:*"
   },
   "devDependencies": {
     "bun-types": "latest",
@@ -17,5 +17,5 @@
     "eslint": "^8.49.0",
     "typescript": "^5.0.0"
   },
-  "module": "src/index.js"
+  "module": "src/index.ts"
 }

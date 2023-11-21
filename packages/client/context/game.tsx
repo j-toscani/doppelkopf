@@ -1,5 +1,7 @@
 'use client';
 
+import { createGame } from '@/actions/createGame';
+import { getHand } from '@/actions/getHand';
 import { FC, PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { opponents } from 'shared/constants';
 import { OpponentState, OrderedCard } from 'shared/types';
@@ -12,12 +14,10 @@ type GameContext = {
 	playCard: (_card: OrderedCard) => void;
 };
 
-const API_HOST = 'http://localhost:4000';
 export const GameContext = createContext<GameContext | null>(null);
 
-export const GameContextProvider: FC<PropsWithChildren<{ gameId: string }>> = ({
+export const GameContextProvider: FC<PropsWithChildren> = ({
 	children,
-	gameId,
 }) => {
 	const [orderedHand, setOrderedHand] = useState<GameContext['hand']>([]);
 	const [table, setTable] = useState<Array<OrderedCard>>([]);
@@ -28,26 +28,17 @@ export const GameContextProvider: FC<PropsWithChildren<{ gameId: string }>> = ({
 	};
 
 	useEffect(() => {
-		const gameIdPromise = gameId
-			? Promise.resolve(gameId)
-			: fetch(`${API_HOST}/game/new`, {
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-			  }).then((response) => response.json());
-
-		gameIdPromise.then((id) => {
-			fetch(`${API_HOST}/game/${id}/id?player=1`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			})
-				.then((response) => response.json())
-				.then((hand) => setOrderedHand(hand))
-				.catch(console.error);
-		});
-	});
+		try {
+			const gameId = sessionStorage.getItem('gameId')
+			const id = gameId ? Promise.resolve(gameId) : createGame(['1', '2', '3', '4']);
+			id.then((gameId) => {
+				sessionStorage.setItem('gameId', gameId)
+				getHand(gameId, '1').then(setOrderedHand)
+			});
+		} catch (error) {
+			console.error(error)
+		}
+	}, []);
 
 	return (
 		<GameContext.Provider

@@ -10,7 +10,7 @@ import { TablePositions } from "shared";
 export const PlayField: FC = () => {
 
   return (
-    <GameContextProvider gameId="">
+    <GameContextProvider>
       <div className="relative flex h-screen">
         <div className={styles["hand--left"]}>
           <OpponentHand position={TablePositions.LEFT} />

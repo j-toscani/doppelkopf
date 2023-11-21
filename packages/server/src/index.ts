@@ -12,7 +12,7 @@ const app = new Elysia();
 
 const games: Map<string, Game> = new Map();
 app.use(cors());
-app.onRequest((request) => Logger.info(`${request.path} =>`));
+app.onRequest(({ request }) => Logger.info(`${request.url} =>`));
 app.onError(handleError);
 
 app.put(
@@ -22,7 +22,7 @@ app.put(
 		const uuid = randomUUID();
 
 		games.set(uuid, game);
-		return uuid;
+		return { uuid };
 	},
 	{
 		body: t.Object({
@@ -66,7 +66,7 @@ app.get('/game/:id/hand', ({ params, query }) => {
 	const hand = player ? game.hands[player] : null;
 	if (!hand) throw new NotFoundError(`Player with [id] ${player} does not exist.`);
 
-	return hand;
+	return { hand };
 });
 
 app.get('/game/:id/table', ({ params }) => {
@@ -75,7 +75,7 @@ app.get('/game/:id/table', ({ params }) => {
 	const game = games.get(id);
 	if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-	return game.table;
+	return { table: game.table };
 });
 
 app.listen(PORT);

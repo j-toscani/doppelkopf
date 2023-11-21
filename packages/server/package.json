@@ -3,10 +3,11 @@
   "version": "1.0.50",
   "scripts": {
     "lint": "eslint --max-warnings 0 --ext js,ts src",
-    "tsc" : "tsc --noEmit",
+    "tsc": "tsc --noEmit",
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@elysiajs/cors": "^0.7.2",
     "elysia": "latest",
     "shared": "workspace:*"
   },

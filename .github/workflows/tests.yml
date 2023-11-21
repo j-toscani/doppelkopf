@@ -18,10 +18,9 @@ jobs:
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    - run: cd client 
     - run: bun i
-    - run: bun run --cwd client lint
-    - run: bun run --cwd client test:ci
+    - run: bun run client:lint
+    - run: bun run client:test-ci
 
   lint-server:
     name: "Lint Server Code"
@@ -32,7 +31,7 @@ jobs:
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    - run: cd server
     - run: bun i
-    - run: bun run --cwd server lint
-    - run: bun run --cwd server tsc
+    - run: bun run server:lint
+    - run: bun run server:tsc
+    - run: bun run server:test

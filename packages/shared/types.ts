@@ -1,3 +1,5 @@
+import { TablePositions } from "./constants";
+
 export const Color = {
 	Spade: 1,
 	Hearth: 2,
@@ -71,3 +73,12 @@ export interface Game {
 	players: { [key: string]: { current: string; next: string } };
 	activePlayer: string;
 }
+export type Table = Array<OrderedCard>;
+
+export type TablePosition = typeof TablePositions[keyof typeof TablePositions]
+
+export type OpponentState = {
+	user: string;
+	position: TablePosition;
+	cardsInHand: number;
+  };

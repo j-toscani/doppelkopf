@@ -1,17 +1,18 @@
 import { Elysia, t } from 'elysia';
 import { Logger } from './logger';
 import { BadRequestError, NotFoundError, handleError } from './errors';
-import { createGame, playCard } from './game/game';
 import { randomUUID } from 'crypto';
 import { Game, isCardId } from 'shared/types';
 import { cors } from '@elysiajs/cors';
-
-const PORT = 4000;
+import { createGame } from './game/createGame';
+import { playCard } from './game/playCard';
+import { environment } from './environment';
 
 const app = new Elysia();
 
 const games: Map<string, Game> = new Map();
-app.use(cors());
+
+app.use(cors({ origin: environment.ORIGIN }));
 app.onRequest(({ request }) => Logger.info(`${request.url} =>`));
 app.onError(handleError);
 
@@ -78,6 +79,6 @@ app.get('/game/:id/table', ({ params }) => {
 	return { table: game.table };
 });
 
-app.listen(PORT);
+app.listen(environment.PORT);
 
 Logger.system(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

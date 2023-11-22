@@ -8,7 +8,7 @@ import { defaultOrder } from "./orders";
 const COPY = '1'
 const players = ['1', '2', '3', '4']
 
-describe("findRoundWinner", () => {
+describe("Find the Round Winner", () => {
     test("Highest fehl wins in non trump round", () => {
         const cards = [
             createCard(COPY, Color.Club, Picture.Ten),

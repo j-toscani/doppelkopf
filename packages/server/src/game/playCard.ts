@@ -1,4 +1,4 @@
-import { CardId, Game } from "shared";
+import { CardId, Game } from 'shared';
 
 export const playCard = (game: Game, player: string, cardId: CardId) => {
 	if (player !== game.activePlayer)

@@ -6,7 +6,7 @@ import { Color, FULL_HAND_OF_CARDS_COUNT, Picture } from "shared";
 const players = ["1", "2", "3", "4"]
 const game = createGame(players)
 
-describe("createGame", () => {
+describe("Creating Game", () => {
     it("References each hand by PlayerId", () => {
         for (const player of players) {
             const hand = game.hands[player];
@@ -38,5 +38,9 @@ describe("createGame", () => {
 
         const allSameCount = hands.every(hand => hand.length === firstHand.length)
         expect(allSameCount).toBe(true)
+    })
+
+    it("Sets the first player in argument as active player", () => {
+        expect(game.activePlayer).toBe(players[FIRST_ARRAY_INDEX])
     })
 })

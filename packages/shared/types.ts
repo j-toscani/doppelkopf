@@ -36,6 +36,7 @@ export const isCardId = (s: string): s is CardId => {
 export interface Card {
 	picture: PictureV;
 	color: ColorV;
+	playable: boolean;
 	points: number;
 	id: CardId;
 }

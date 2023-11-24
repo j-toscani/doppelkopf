@@ -20,6 +20,7 @@ type CopyV = (typeof copies)[number];
 export const createCard = (copy: CopyV, color: ColorV, picture: PictureV): Card => ({
 	picture,
 	color,
+	playable: true,
 	points: points[picture],
 	id: `${copy}${color}${picture}`,
 });

@@ -67,14 +67,15 @@ export type GameOrderEntry = { trump: boolean; order: number };
 export type GameOrder = Record<CardId, GameOrderEntry>;
 export type DealtHands<C = OrderedCard> = [Array<C>, Array<C>, Array<C>, Array<C>];
 
+export type Table = Array<{ card: OrderedCard; from: string }>;
+
 export interface Game {
 	hands: { [key: string]: Array<OrderedCard> };
-	table: Array<{ card: OrderedCard; from: string }>;
-	rounds: Array<Array<{ card: OrderedCard; from: string }>>;
+	table: Table;
+	rounds: Array<Table>;
 	players: { [key: string]: { current: string; next: string } };
 	activePlayer: string;
 }
-export type Table = Array<OrderedCard>;
 
 export type TablePosition = typeof TablePositions[keyof typeof TablePositions]
 

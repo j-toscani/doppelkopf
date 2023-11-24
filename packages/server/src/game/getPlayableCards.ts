@@ -2,9 +2,10 @@ import { CardId, ColorV, Game, OrderedCard } from 'shared';
 import { FIRST_ARRAY_INDEX } from '../constants';
 
 const filterForTrumpCards = (card: OrderedCard) => card.trump;
+const filterForFehlCards = (card: OrderedCard) => !card.trump;
 const filterForColor = (color: ColorV) => (card: OrderedCard) => card.color === color;
 const mapForCardIds = (card: OrderedCard) => card.id;
-const creaetMapPlayableCards =
+const createMapPlayableCards =
 	(playableIds: Array<CardId>) =>
 	(card: OrderedCard): OrderedCard => ({
 		...card,
@@ -22,7 +23,7 @@ const checkFehlRound = (hand: Array<OrderedCard>, fehlColor: ColorV) => {
 	const hasFehl = hand.some(({ color }) => fehlColor === color);
 
 	return hasFehl
-		? hand.filter(filterForColor(fehlColor)).map(mapForCardIds)
+		? hand.filter(filterForFehlCards).filter(filterForColor(fehlColor)).map(mapForCardIds)
 		: hand.map(mapForCardIds);
 };
 
@@ -30,11 +31,15 @@ export const getPlayableCards = (
 	table: Game['table'],
 	hand: Array<OrderedCard>,
 ): Array<OrderedCard> => {
-	const firstCard = table[FIRST_ARRAY_INDEX].card;
+	const firstCard = table[FIRST_ARRAY_INDEX]?.card;
+
+	if (!firstCard) return hand.map((card) => ({ ...card, playable: true}))
+
 	const isTrumpRound = firstCard.trump;
 
 	const playableIds = isTrumpRound
 		? checkTrumpRound(hand)
 		: checkFehlRound(hand, firstCard.color);
-	return hand.map(creaetMapPlayableCards(playableIds));
+
+	return hand.map(createMapPlayableCards(playableIds));
 };

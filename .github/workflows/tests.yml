@@ -23,7 +23,7 @@ jobs:
     - run: bun run client:test-ci
 
   lint-server:
-    name: "Lint Server Code"
+    name: "Test Server Code"
     runs-on: ubuntu-latest
 
     steps:

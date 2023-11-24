@@ -7,6 +7,7 @@ import { cors } from '@elysiajs/cors';
 import { createGame } from './game/createGame';
 import { playCard } from './game/playCard';
 import { environment } from './environment';
+import { getPlayableCards } from './game/getPlayableCards';
 
 const app = new Elysia();
 
@@ -67,7 +68,7 @@ app.get('/game/:id/hand', ({ params, query }) => {
 	const hand = player ? game.hands[player] : null;
 	if (!hand) throw new NotFoundError(`Player with [id] ${player} does not exist.`);
 
-	return { hand };
+	return { hand: getPlayableCards(game.table, hand) };
 });
 
 app.get('/game/:id/table', ({ params }) => {

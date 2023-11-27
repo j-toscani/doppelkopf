@@ -6,6 +6,7 @@ import { cors } from '@elysiajs/cors';
 
 import { environment } from './environment';
 import game from './routes/game';
+import ws from './websocket';
 
 const app = new Elysia();
 
@@ -14,6 +15,7 @@ app.onRequest(({ request }) => Logger.info(`${request.url} =>`));
 app.onError(handleError);
 
 app.use(game)
+app.use(ws)
 app.listen(environment.PORT);
 
 Logger.system(`🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`);

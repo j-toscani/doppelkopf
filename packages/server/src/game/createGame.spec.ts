@@ -1,21 +1,19 @@
 import { describe, expect, it } from 'bun:test';
 import { createGame } from './createGame';
 import { FIRST_ARRAY_INDEX } from '../constants';
-import { Color, FULL_HAND_OF_CARDS_COUNT, Picture } from 'shared';
+import { Color, FULL_HAND_OF_CARDS_COUNT, MAX_PLAYER_COUNT, Picture } from 'shared';
 
-const LAST_FROM_END = -1
+const LAST_FROM_END = -1;
 const players = ['1', '2', '3', '4'];
 const game = createGame(players);
 
 describe('Creating Game', () => {
-	it('References each hand by PlayerId', () => {
-		for (const player of players) {
-			const hand = game.hands[player];
 
-			expect(hand).toBeDefined();
-			expect(hand).toBeArray();
-		}
-	});
+	it('Always starts with four hands and four seats', () => {
+		const game = createGame(['1']);
+		expect(game.hands).toHaveLength(MAX_PLAYER_COUNT)
+		expect(game.seats).toHaveLength(MAX_PLAYER_COUNT)
+	})
 
 	it('Sorts all hands', () => {
 		Object.values(game.hands).forEach((hand) => {
@@ -39,7 +37,7 @@ describe('Creating Game', () => {
 		expect(table).toBeEmpty();
 	});
 
-	it('Passes the same the number of cards to every player', () => {
+	it('Passes the same number of cards to every player', () => {
 		const hands = Object.values(game.hands);
 		const firstHand = hands[FIRST_ARRAY_INDEX];
 
@@ -50,6 +48,6 @@ describe('Creating Game', () => {
 	});
 
 	it('Sets the first player in argument as active player', () => {
-		expect(game.activePlayer).toBe(players[FIRST_ARRAY_INDEX]);
+		expect(game.seats[game.activeSeat]).toBe(players[FIRST_ARRAY_INDEX]);
 	});
 });

@@ -1,6 +1,6 @@
 import { fleischlosOrder } from '.';
 import { cards } from '../cards';
-import {  Picture } from 'shared/types';
+import { Picture } from 'shared';
 import { applyOrder, sortCards } from './utils';
 import { describe, expect, it } from "bun:test" 
 import { FIRST_ARRAY_INDEX, LAST_ITEM_INDEX } from '../../constants';

@@ -1,6 +1,6 @@
 import { defaultOrder } from ".";
 import { cards } from "../cards";
-import { Color, Picture } from "shared/types";
+import { Color, Picture } from "shared";
 import { applyOrder, sortCards } from "./utils";
 import { describe, it, expect } from "bun:test";
 import { FIRST_ARRAY_INDEX, LAST_ITEM_INDEX } from "../../constants";

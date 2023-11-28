@@ -1,19 +1,4 @@
-import { TablePositions } from "./constants";
-
-export const Color = {
-	Spade: 1,
-	Hearth: 2,
-	Club: 3,
-	Diamond: 4,
-} as const;
-
-export const Picture = {
-	Ten: 1,
-	Jack: 2,
-	Queen: 3,
-	King: 4,
-	Ace: 5,
-} as const;
+import { Color, Picture, TablePositions } from "./constants";
 
 type Value<T extends {}> = T[keyof T];
 
@@ -68,13 +53,14 @@ export type GameOrder = Record<CardId, GameOrderEntry>;
 export type DealtHands<C = OrderedCard> = [Array<C>, Array<C>, Array<C>, Array<C>];
 
 export type Table = Array<{ card: OrderedCard; from: string }>;
+type Player = string
 
 export interface Game {
-	hands: { [key: string]: Array<OrderedCard> };
+	hands: Array<Array<OrderedCard>>;
 	table: Table;
 	rounds: Array<Table>;
-	players: { [key: string]: { current: string; next: string } };
-	activePlayer: string;
+	seats: Array<Player>;
+	activeSeat: number;
 }
 
 export type TablePosition = typeof TablePositions[keyof typeof TablePositions]

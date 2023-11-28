@@ -1,12 +1,12 @@
 import { Game } from "shared";
 import { dealHands } from "./dealHands";
 import { defaultOrder } from "./orders";
-import { applyOrder } from "./orders/utils";
+import { applyOrder, sortCards } from "./orders/utils";
 
 const FIRST_PLAYER = 0;
 
 export const createGame = (players: Array<string>): Game => {
-	const orderedHands = dealHands().map((hand) => applyOrder(hand, defaultOrder));
+	const orderedHands = dealHands().map((hand) => applyOrder(hand, defaultOrder).sort(sortCards));
 	const handTuples = players.map((player, index) => [player, orderedHands[index]] as const);
 	const [first, ...rest] = players;
 	const shiftedPlayers = [...rest, first];

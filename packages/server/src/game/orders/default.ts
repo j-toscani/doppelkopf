@@ -1,4 +1,4 @@
-import { Color, GameOrder, Picture } from "shared/types";
+import { Color, GameOrder, Picture } from "shared";
 import { createCardOrderEntries, reduceToGameOrder } from "./utils";
 
 export const defaultOrder: GameOrder = [

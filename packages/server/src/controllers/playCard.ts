@@ -26,11 +26,11 @@ const handler =
 		if (!isCardId(body.card))
 			throw new BadRequestError(`String ${body.card} is not a valid [card.id].`);
 
-		playCard(game, body.player, body.card);
+		const updatedHand = playCard(game, body.player, body.card);
 
 		return {
 			table: game.table,
-			hand: game.hands[body.player],
+			hand: updatedHand,
 		};
 	};
 

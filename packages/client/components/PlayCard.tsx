@@ -1,6 +1,6 @@
 'use client';
 import { FC } from 'react';
-import { Color, OrderedCard } from 'shared/types';
+import { Color, OrderedCard } from 'shared';
 
 import Heart from '@/assets/hearts.svg';
 import Club from '@/assets/clubs.svg';

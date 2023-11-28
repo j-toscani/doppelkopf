@@ -1,4 +1,4 @@
-import { Card, Color, type PictureV, Picture, ColorV } from 'shared/types';
+import { Card, Color, type PictureV, Picture, ColorV } from 'shared';
 
 const points: Record<PictureV, number> = {
 	[Picture.Jack]: 2,

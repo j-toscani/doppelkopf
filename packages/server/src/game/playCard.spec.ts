@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'bun:test';
-import { Game } from 'shared';
+import { ADD_ONE, Game, NOT_FOUND_INDEX } from 'shared';
 import { createGame } from './createGame';
 import { playCard } from './playCard';
 import { FIRST_ARRAY_INDEX } from '../constants';
@@ -35,6 +35,19 @@ describe('Play a Card', () => {
         expect(play).toThrow();
 	});
 
+	it('Returns updated hand of cards', () => {
+		const player = game.seats[game.activeSeat];
+		const [card] = game.hands[game.activeSeat];
+		const oldCardCount = game.hands[game.activeSeat].length
+
+		const play = () => playCard(game, player, card.id);
+
+		const hand = play();
+		expect(hand).toHaveLength(oldCardCount - ADD_ONE);
+		expect(hand.findIndex(({id}) => card.id === id)).toBe(NOT_FOUND_INDEX)
+		expect(game.table[FIRST_ARRAY_INDEX]).toBeTruthy();
+	});
+
 	it('Trows error if card is played second time', () => {
 		const player = game.seats[game.activeSeat];
 		const [card] = game.hands[game.activeSeat];
@@ -47,6 +60,7 @@ describe('Play a Card', () => {
 
 		expect(play).toThrow();
 	});
+
 	it('Puts card on the table with player reference', () => {
 		const player = game.seats[game.activeSeat];
 		const [card] = game.hands[game.activeSeat];

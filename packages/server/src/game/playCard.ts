@@ -1,6 +1,6 @@
-import { CardId, Game } from 'shared';
+import { CardId, Game, OrderedCard } from 'shared';
 
-export const playCard = (game: Game, player: string, cardId: CardId) => {
+export const playCard = (game: Game, player: string, cardId: CardId): Array<OrderedCard> => {
 	if (player !== game.seats[game.activeSeat])
 		throw new Error('Only the active player is allowed to play a card.');
 
@@ -12,4 +12,6 @@ export const playCard = (game: Game, player: string, cardId: CardId) => {
 
 	game.hands[game.activeSeat] = playerHand.filter((card) => card.id !== cardId);
 	game.table.push({ from: player, card: playerCard });
+
+	return game.hands[game.activeSeat]
 };

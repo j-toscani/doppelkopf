@@ -1,6 +1,7 @@
 import { Context, NotFoundError } from 'elysia';
 import { getPlayableCards } from '../game/getPlayableCards';
 import { getGames } from '../game/games';
+import { MAX_PLAYER_COUNT, NOT_FOUND_INDEX } from 'shared';
 
 type Query = Record<string, string | null>;
 type Params = Record<'id', string>;
@@ -14,10 +15,11 @@ const handler =
 		const game = games().get(id);
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-		const hand = player ? game.hands[player] : null;
-		if (!hand) throw new NotFoundError(`Player with [id] ${player} does not exist.`);
+		const seatIndex = game.seats.findIndex((p) => p === player)
 
-		return { hand: getPlayableCards(game.table, hand) };
+		if (seatIndex === NOT_FOUND_INDEX || seatIndex >= MAX_PLAYER_COUNT) throw new NotFoundError(`Player with [id] ${player} does not exist.`);
+
+		return { hand: getPlayableCards(game.table, game.hands[seatIndex]) };
 	};
 
 export default {

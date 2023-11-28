@@ -5,7 +5,7 @@ export const useGame = () => {
     const context = useContext(GameContext);
 
     if (!context) {
-        throw new Error("Context 'GameContext' is was provided!")
+        throw new Error("Context 'GameContext' was not provided!")
     }
 
     return context

@@ -5,7 +5,7 @@ import { handleError } from './errors';
 import { cors } from '@elysiajs/cors';
 
 import { environment } from './environment';
-import game from './routes/game';
+import game from './routes/games';
 import ws from './websocket';
 
 const app = new Elysia();

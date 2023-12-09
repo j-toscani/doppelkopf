@@ -6,7 +6,7 @@ export default function Lobby() {
 			<h1 className="text-2xl">
 				Lobby
 			</h1>
-			<Link href="/game/lobby/1">
+			<Link href="/game/1/play">
 				To Game!
 			</Link>
 		</main>

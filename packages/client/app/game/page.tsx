@@ -7,7 +7,7 @@ export default function GameSelect() {
 				This is the Game Select
 			</h1>
 
-			<Link href="/game/lobby">
+			<Link href="/game/1">
 				To Lobby
 			</Link>
 		</main>

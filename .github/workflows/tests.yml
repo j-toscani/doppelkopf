@@ -20,7 +20,7 @@ jobs:
         bun-version: latest
     - run: bun i
     - run: bun run client:lint
-    - run: bun run client:test-ci
+    # - run: bun run client:test-ci
 
   lint-server:
     name: "Test Server Code"

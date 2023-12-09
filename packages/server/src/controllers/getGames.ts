@@ -1,16 +1,16 @@
-import { Game } from "shared";
-import { getGames } from "../game/games";
+import { Game } from 'shared';
+import { getGames } from '../game/games';
 
 export default {
-    handler: () => {
-        const gamesMap = getGames();
+	handler: () => {
+		const gamesMap = getGames();
 
-        const games: Record<string, Game> = {};
+		const games: Array<Game> = [];
 
-        for (const [key,value] of gamesMap.entries()) {
-            games[key] = value
-        }
+		for (const [_, value] of gamesMap.entries()) {
+			games.push(value);
+		}
 
-        return { games }
-    }
-}
+		return { games };
+	},
+};

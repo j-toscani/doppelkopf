@@ -8,7 +8,6 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "@elysiajs/cors": "^0.7.2",
     "elysia": "latest",
     "shared": "workspace:*",
     "zod": "^3.22.4"

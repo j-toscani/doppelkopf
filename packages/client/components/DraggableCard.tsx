@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import { OrderedCard } from "../game/types";
+import { OrderedCard } from "shared";
 import { useDraggableCard } from "../hooks/useDraggableCards";
 
 import styles from "@/styles/Card.module.scss";

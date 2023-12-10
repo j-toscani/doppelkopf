@@ -7,10 +7,10 @@ import { GameContextProvider } from "../context/game";
 import styles from "@/styles/Table.module.css";
 import { TablePositions } from "shared";
 
-export const PlayField: FC = () => {
+export const PlayField: FC<{gameId:string}> = ({gameId}) => {
 
   return (
-    <GameContextProvider>
+    <GameContextProvider gameId={gameId}>
       <div className="relative flex h-screen">
         <div className={styles["hand--left"]}>
           <OpponentHand position={TablePositions.LEFT} />

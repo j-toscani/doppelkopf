@@ -1,6 +1,5 @@
 'use client';
 
-import { createGame } from '@/actions/createGame';
 import { getHand } from '@/actions/getHand';
 import { FC, PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { opponents } from 'shared/constants';
@@ -16,8 +15,9 @@ type GameContext = {
 
 export const GameContext = createContext<GameContext | null>(null);
 
-export const GameContextProvider: FC<PropsWithChildren> = ({
+export const GameContextProvider: FC<PropsWithChildren<{ gameId: string }>> = ({
 	children,
+	gameId,
 }) => {
 	const [orderedHand, setOrderedHand] = useState<GameContext['hand']>([]);
 	const [table, setTable] = useState<Array<OrderedCard>>([]);
@@ -28,17 +28,8 @@ export const GameContextProvider: FC<PropsWithChildren> = ({
 	};
 
 	useEffect(() => {
-		try {
-			const gameId = sessionStorage.getItem('gameId')
-			const id = gameId ? Promise.resolve(gameId) : createGame(['1', '2', '3', '4']);
-			id.then((gameId) => {
-				sessionStorage.setItem('gameId', gameId)
-				getHand(gameId, '1').then(setOrderedHand)
-			});
-		} catch (error) {
-			console.error(error)
-		}
-	}, []);
+		getHand(gameId, '1').then(setOrderedHand).catch(console.error);
+	}, [gameId]);
 
 	return (
 		<GameContext.Provider

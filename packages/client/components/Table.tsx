@@ -37,7 +37,7 @@ export const Table = () => {
 
   return (
     <ul
-      className={`${styles.table} bg-white`}
+      className={`${styles.table} bg-teal-400`}
       ref={tableRef}
       onDragEnter={onDragEnter}
       onDragLeave={onDragEnd}

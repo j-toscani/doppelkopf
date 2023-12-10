@@ -56,6 +56,7 @@ export type Table = Array<{ card: OrderedCard; from: string }>;
 type Player = string
 
 export interface Game {
+	id: string;
 	hands: Array<Array<OrderedCard>>;
 	table: Table;
 	rounds: Array<Table>;

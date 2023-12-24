@@ -6,6 +6,7 @@ import { cors } from './cors';
 
 import { environment } from './environment';
 import game from './routes/games';
+import login from './routes/login';
 import users from './routes/users';
 import ws from './websocket';
 
@@ -17,6 +18,7 @@ app.onError(handleError);
 
 app.use(game)
 app.use(users)
+app.use(login)
 app.use(ws)
 app.listen(environment.PORT);
 

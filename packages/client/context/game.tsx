@@ -3,7 +3,7 @@
 import { getHand } from '@/actions/getHand';
 import { FC, PropsWithChildren, createContext, useEffect, useState } from 'react';
 import { opponents } from 'shared/constants';
-import { OpponentState, OrderedCard } from 'shared/types';
+import { OpponentState, OrderedCard } from 'shared';
 
 type GameContext = {
 	canPlayCard: boolean;
@@ -15,9 +15,10 @@ type GameContext = {
 
 export const GameContext = createContext<GameContext | null>(null);
 
-export const GameContextProvider: FC<PropsWithChildren<{ gameId: string }>> = ({
+export const GameContextProvider: FC<PropsWithChildren<{ gameId: string, playerId: string }>> = ({
 	children,
 	gameId,
+	playerId
 }) => {
 	const [orderedHand, setOrderedHand] = useState<GameContext['hand']>([]);
 	const [table, setTable] = useState<Array<OrderedCard>>([]);
@@ -28,8 +29,8 @@ export const GameContextProvider: FC<PropsWithChildren<{ gameId: string }>> = ({
 	};
 
 	useEffect(() => {
-		getHand(gameId, '1').then(setOrderedHand).catch(console.error);
-	}, [gameId]);
+		getHand(gameId, playerId).then(setOrderedHand).catch(console.error);
+	}, [gameId, playerId]);
 
 	return (
 		<GameContext.Provider

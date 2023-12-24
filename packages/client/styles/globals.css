@@ -16,10 +16,18 @@ a {
   @apply underline;
 }
 
-button {
+button,
+button[type="submit"] {
 	@apply px-2 py-1;
 	@apply max-w-fit;
-	@apply border rounded;
+	@apply rounded;
+
+	@apply bg-green-600;
+	@apply text-white;
+}
+
+button[type="submit"] {
+	@apply bg-blue-600;
 }
 
 input {

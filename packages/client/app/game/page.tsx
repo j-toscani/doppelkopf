@@ -1,5 +1,6 @@
+import { createGame } from '@/actions/createGame';
 import { getGames } from '@/actions/getGames';
-import { CreateGameButton } from '@/components/CreateGameButton';
+import { DispatchActionButton } from '@/components/DispatchActionButton';
 import Link from 'next/link';
 
 export default async function GameSelect() {
@@ -8,7 +9,7 @@ export default async function GameSelect() {
 		<main className="container mx-auto">
 			<h1 className="text-2xl">This is the Game Select</h1>
 			<div>
-				<CreateGameButton>Create Game</CreateGameButton>
+				<DispatchActionButton action={createGame} title="Create new game">Create Game</DispatchActionButton>
 			</div>
 			<ul className="grid grid-cols-6 gap-2">
 				{games.map((game) => (

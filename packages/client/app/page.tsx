@@ -1,18 +1,14 @@
-import { TextInput } from '@/components/TextInput';
+import { LoginForm } from '@/components/LoginForm';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default function Login() {
+	if (cookies().get('user')?.value) redirect('/game');
+
 	return (
 		<main className="h-full flex">
-			<form className="shadow-md rounded-md p-4 pt-6 m-auto max-w-fit bg-white">
-				<fieldset className="p-4">
-					<legend className="text-2xl">Login</legend>
-					<div className="flex flex-col gap-2 mb-6 w-72">
-						<TextInput type="email" label="Ihre E-Mail Adresse:" id="email" />
-						<TextInput type="password" label="Passwort:" id="password" />
-					</div>
-					<button title="Einloggen">Einloggen</button>
-				</fieldset>
+			<LoginForm>
 				<div className="py-2 px-4 flex gap-4">
 					<Link href="/game" title="Zur Lobbyauswahl">
 						Zur Lobbyauswahl
@@ -21,7 +17,7 @@ export default function Login() {
 						Zum Registrieren
 					</Link>
 				</div>
-			</form>
+			</LoginForm>
 		</main>
 	);
 }

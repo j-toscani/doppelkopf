@@ -3,7 +3,7 @@ import { describe, it, expect, beforeEach } from "bun:test";
 import { dealHands } from './dealHands';
 import { defaultOrder } from './orders';
 import { applyOrder } from './orders/utils';
-import { OrderedCard } from 'shared/types';
+import { OrderedCard } from 'shared';
 
 let hands: Array<Array<OrderedCard>>;
 

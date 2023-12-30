@@ -1,11 +1,14 @@
 import { Context, NotFoundError } from 'elysia';
 import { getGames } from '../game/games';
+import { Handler, Table } from 'shared';
 
-type Params = Record<'id', string>;
+type Depencies = { games: typeof getGames }
+type CTX = Context<{params:  Record<'id', string>;}>
+type Result = { table: Table }
 
-const handler =
-	({ games }: { games: typeof getGames }) =>
-	({ params }: Context<{ params: Params }>) => {
+const handler: Handler<Depencies, CTX, Result> =
+	({ games }) =>
+	({ params }) => {
 		const { id } = params;
 
 		const game = games().get(id);

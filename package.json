@@ -1,7 +1,12 @@
 {
   "name": "doppelkopf",
   "module": "index.ts",
-  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
   "scripts": {
     "server:dev": "bun run --cwd packages/server dev",
     "server:lint": "bun run --cwd packages/server lint",
@@ -11,13 +16,8 @@
     "client:lint": "bun run --cwd packages/client lint",
     "client:test-ci": "bun run --cwd packages/client test:ci"
   },
+  "type": "module",
   "workspaces": [
     "packages/*"
-  ],
-  "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  }
+  ]
 }

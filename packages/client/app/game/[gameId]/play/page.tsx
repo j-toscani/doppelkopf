@@ -9,8 +9,7 @@ export default function Game({ params }: ParamProps<LobbyParams>) {
 		<main className="overflow-hidden">
 			<PlayField gameId={gameId} />
 			<Link href="/game" className="absolute top-4 left-4">
-				{' '}
-				← Zur Lobbyauswahl{' '}
+				← To lobby select
 			</Link>
 		</main>
 	);

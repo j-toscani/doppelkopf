@@ -1,4 +1,4 @@
-import { Game, GameOrder } from 'shared/types';
+import { Game, GameOrder } from 'shared';
 import { applyOrder } from './orders/utils';
 import { ADD_ONE, MAX_PLAYER_COUNT } from 'shared/constants';
 import { findRoundWinner } from './findRoundWinner';

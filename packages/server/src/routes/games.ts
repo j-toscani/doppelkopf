@@ -1,5 +1,5 @@
 import Elysia from 'elysia';
-import createGameConfig from '../controllers/createNewGame';
+import createGameConfig from '../controllers/createGame';
 import playCardConfig from '../controllers/playCard';
 import getTableConfig from '../controllers/getTable';
 import getGames from '../controllers/getGames';

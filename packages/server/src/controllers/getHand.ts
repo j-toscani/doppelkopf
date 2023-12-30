@@ -1,14 +1,15 @@
 import { Context, NotFoundError } from 'elysia';
 import { getPlayableCards } from '../game/getPlayableCards';
 import { getGames } from '../game/games';
-import { MAX_PLAYER_COUNT, NOT_FOUND_INDEX } from 'shared';
+import { Handler, MAX_PLAYER_COUNT, NOT_FOUND_INDEX, OrderedCard } from 'shared';
 
-type Query = Record<string, string | null>;
-type Params = Record<'id', string>;
+type Depencies = { games: typeof getGames }
+type CTX = Context<{ query: Record<string, string | null>; params: Record<'id', string> }>
+type Result = { hand: Array<OrderedCard>}
 
-const handler =
-	({ games }: { games: typeof getGames }) =>
-	({ params, query }: Context<{ query: Query; params: Params }>) => {
+const handler: Handler<Depencies, CTX, Result> =
+	({ games }) =>
+	({ params, query }) => {
 		const { id } = params;
 		const { player } = query;
 

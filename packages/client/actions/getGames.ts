@@ -6,7 +6,6 @@ export const getGames = (): Promise<{ games: Array<Game> }> =>
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		next: { revalidate: 30 },
 	})
 		.then((response) => {
 			if (!response.ok) {

@@ -71,3 +71,4 @@ export type OpponentState = {
 	position: TablePosition;
 	cardsInHand: number;
   };
+

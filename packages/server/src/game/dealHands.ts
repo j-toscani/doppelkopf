@@ -1,6 +1,6 @@
 import { cards } from "./cards";
 import { shuffleCards } from "./orders/utils";
-import { Card, DealtHands } from "shared/types";
+import { Card, DealtHands } from "shared";
 
 const HANDS_TO_DEAL = 4;
 

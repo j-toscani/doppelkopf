@@ -7,7 +7,7 @@ import {
   GameOrder,
   OrderedCard,
   PictureV,
-} from "shared/types";
+} from "shared";
 
 /**
  * Utilities are integration tested by testing 

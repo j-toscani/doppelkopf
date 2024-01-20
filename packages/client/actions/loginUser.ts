@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export const loginUser = async (
-	prevState: { message: string; success: boolean },
+	_prevState: { message: string; success: boolean },
 	formData: FormData,
 ): Promise<{ message: string; success: boolean }> => {
 	const name = formData.get('name') as string;

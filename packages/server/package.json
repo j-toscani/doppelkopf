@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "elysia": "latest",
+    "mongodb": "^6.3.0",
     "shared": "workspace:*",
     "zod": "^3.22.4"
   },

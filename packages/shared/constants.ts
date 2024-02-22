@@ -1,4 +1,4 @@
-export const NOT_FOUND_INDEX = -1
+export const NOT_FOUND_INDEX = -1;
 export const EMPTY_HAND_COUNT = 0;
 export const NO_CARDS_PLAYED = 0;
 export const HALF_CARD_WIDTH_REM = 2;

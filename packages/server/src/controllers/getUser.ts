@@ -1,14 +1,14 @@
 import { Context } from 'elysia';
-import { getUserByName as getUserAction } from '../db/users';
+import { UserRepo } from '../db/db';
 
 type Params = Record<'name', string>;
 
 const handler =
-	({ getUser }: { getUser: typeof getUserAction }) =>
-	({ params }: Context<{ params: Params }>) => {
-		return { user: getUser({ name: params.name }) };
+	({ User }: { User: typeof UserRepo }) =>
+	async ({ params }: Context<{ params: Params }>) => {
+		return { user: await User.findOne({ name: params.name }) };
 	};
 
 export default {
-	handler: handler({ getUser: getUserAction }),
+	handler: handler({ User: UserRepo }),
 };

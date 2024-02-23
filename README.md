@@ -10,6 +10,11 @@ cd ../server
 bun install
 ```
 
+You will need a running mongodb to connect to. You can start one using Docker with the follwoing command:
+
+```
+docker run --name <name of your container> -p 27017:27017 --expose 27017 -v $(pwd)/data:/bitname/mongodb -e MONGODB_ROOT_PASSWORD=123 -e MONGODB_USERNAME=<user name> -e MONGODB_PASSWORD=<password> -e MONGODB_DATABASE=<name of db> bitnami/mongodb:latest
+```
 # Disclaimer
 
 As doppelkopf is a pretty complex game it will take quite a while to build. Hence, I will focus to create a minimal version first.

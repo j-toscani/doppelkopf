@@ -1,6 +1,6 @@
 import { Context, t } from 'elysia';
 import { Handler, User } from 'shared';
-import { UserRepo } from '../db/repository';
+import { UserRepo } from '../db/db';
 
 const bodySchema = t.Object({
 	name: t.String(),

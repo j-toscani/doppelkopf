@@ -1,5 +1,5 @@
 import { Context } from 'elysia';
-import { UserRepo } from '../db/repository';
+import { UserRepo } from '../db/db';
 
 type Params = Record<'name', string>;
 

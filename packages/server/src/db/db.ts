@@ -12,16 +12,17 @@ import {
 	UpdateOptions,
 } from 'mongodb';
 import { User } from 'shared';
+import { environment } from '../environment';
 
-const client = new MongoClient(process.env.MONGODB_URL ?? 'mongodb://127.0.0.1:27016', {
+const client = new MongoClient(environment.MONGODB_URL, {
 	auth: {
-		password: process.env.MONGODB_PASSWORD || '123',
-		username: process.env.MONGODB_USERNAME || 'user',
+		password: environment.DBUSER_PASSWORD,
+		username: environment.DBUSER_NAME,
 	},
-	authSource: process.env.MONGODB_DATABASE,
+	authSource: environment.MONGODB_DATABASENAME,
 }).connect();
 
-const getDb = async () => (await client).db(process.env.MONGODB_DATABASE);
+const getDb = async () => (await client).db(environment.MONGODB_DATABASENAME);
 
 export class BaseRepository<T extends Document> {
 	collection: Promise<Collection<T>>;

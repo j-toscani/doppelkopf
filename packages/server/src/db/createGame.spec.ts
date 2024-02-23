@@ -4,12 +4,12 @@ import { FIRST_ARRAY_INDEX } from '../constants';
 import { Color, FULL_HAND_OF_CARDS_COUNT, MAX_PLAYER_COUNT, Picture } from 'shared';
 
 const LAST_FROM_END = -1;
-const players = ['1', '2', '3', '4'];
-const game = createGame(players);
+const players = ['1', '2', '3', '4'].map((name) => ({ name }));
+const game = createGame({ seats: players });
 
 describe('Creating Game', () => {
 	it('Always starts with four hands and four seats', () => {
-		const game = createGame(['1']);
+		const game = createGame({ seats: [{ name: '1' }] });
 		expect(game.hands).toHaveLength(MAX_PLAYER_COUNT);
 		expect(game.seats).toHaveLength(MAX_PLAYER_COUNT);
 	});

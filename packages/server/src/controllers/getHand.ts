@@ -3,9 +3,9 @@ import { getPlayableCards } from '../game/getPlayableCards';
 import { getGames } from '../game/games';
 import { Handler, MAX_PLAYER_COUNT, NOT_FOUND_INDEX, OrderedCard } from 'shared';
 
-type Depencies = { games: typeof getGames }
-type CTX = Context<{ query: Record<string, string | null>; params: Record<'id', string> }>
-type Result = { hand: Array<OrderedCard>}
+type Depencies = { games: typeof getGames };
+type CTX = Context<{ query: Record<string, string | null>; params: Record<'id', string> }>;
+type Result = { hand: Array<OrderedCard> };
 
 const handler: Handler<Depencies, CTX, Result> =
 	({ games }) =>
@@ -16,9 +16,10 @@ const handler: Handler<Depencies, CTX, Result> =
 		const game = games().get(id);
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-		const seatIndex = game.seats.findIndex((p) => p === player)
+		const seatIndex = game.seats.findIndex((p) => p.name === player);
 
-		if (seatIndex === NOT_FOUND_INDEX || seatIndex >= MAX_PLAYER_COUNT) throw new NotFoundError(`Player with [id] ${player} does not exist.`);
+		if (seatIndex === NOT_FOUND_INDEX || seatIndex >= MAX_PLAYER_COUNT)
+			throw new NotFoundError(`Player with [id] ${player} does not exist.`);
 
 		return { hand: getPlayableCards(game.table, game.hands[seatIndex]) };
 	};

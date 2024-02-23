@@ -1,7 +1,7 @@
 import { createGame } from '../game/createGame';
 import { Context, t } from 'elysia';
-import { getGames } from '../game/games';
 import { Handler } from 'shared';
+import { GameRepo } from '../db/db';
 
 const bodySchema = t.Object({
 	player: t.Array(t.String()),
@@ -9,20 +9,20 @@ const bodySchema = t.Object({
 
 type BodyType = (typeof bodySchema)['static'];
 
-type Dependencies = { games: typeof getGames }
-type CTX = Context<{ body: BodyType }>
+type Dependencies = { Game: typeof GameRepo; createGame: typeof createGame };
+type CTX = Context<{ body: BodyType }>;
 
 const context = { body: bodySchema };
-const handler: Handler<Dependencies, CTX, { id: string }> =
-	({ games }) =>
-	({ body }) => {
+const handler: Handler<Dependencies, CTX, Promise<{ id: string }>> =
+	({ Game, createGame }) =>
+	async ({ body }) => {
 		const game = createGame(body.player);
+		await Game.insertOne(game);
 
-		games().set(game.id, game);
 		return { id: game.id };
 	};
 
 export default {
 	context,
-	handler: handler({ games: getGames }),
+	handler: handler({ Game: GameRepo, createGame }),
 };

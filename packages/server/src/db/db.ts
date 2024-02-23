@@ -11,8 +11,9 @@ import {
 	UpdateFilter,
 	UpdateOptions,
 } from 'mongodb';
-import { User } from 'shared';
+import { Game, User } from 'shared';
 import { environment } from '../environment';
+import { createGame } from './createGame';
 
 const client = new MongoClient(environment.MONGODB_URL, {
 	auth: {
@@ -26,9 +27,11 @@ const getDb = async () => (await client).db(environment.MONGODB_DATABASENAME);
 
 export class BaseRepository<T extends Document> {
 	collection: Promise<Collection<T>>;
+	create: (input?: Partial<T>) => T;
 
-	constructor(collection: string) {
+	constructor(collection: string, create: (input?: Partial<T>) => T) {
 		this.collection = getDb().then((db) => db.collection<T>(collection));
+		this.create = create;
 	}
 
 	async insertOne(input: OptionalUnlessRequiredId<T>, options?: InsertOneOptions) {
@@ -44,7 +47,7 @@ export class BaseRepository<T extends Document> {
 	}
 
 	async findMany(query: Filter<T>, options?: FindOptions<T>) {
-		return (await this.collection).find(query, options);
+		return (await this.collection).find(query, options).toArray();
 	}
 
 	async updateOne(
@@ -64,4 +67,5 @@ export class BaseRepository<T extends Document> {
 	}
 }
 
-export const UserRepo = new BaseRepository<User>('users');
+export const UserRepo = new BaseRepository<User>('users', () => ({ name: '' }));
+export const GameRepo = new BaseRepository<Game>('games', createGame);

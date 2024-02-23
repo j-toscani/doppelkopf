@@ -22,6 +22,6 @@ const findNextPlayerInRound = (game: Game): number =>
 
 export const afterCardPlayed = (game: Game) => {
 	game.activeSeat = allCardsPlayed(game)
-		? game.seats.findIndex((player) => player === findRoundWinner(game.table))
+		? game.seats.findIndex((player) => player.name === findRoundWinner(game.table))
 		: findNextPlayerInRound(game);
 };

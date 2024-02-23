@@ -1,16 +1,18 @@
-import { Game } from 'shared';
-import { getGames } from '../game/games';
+import { Game, Handler } from 'shared';
+import { GameRepo } from '../db/db';
 
-export default {
-	handler: () => {
-		const gamesMap = getGames();
+type Dependencies = {
+	Game: typeof GameRepo;
+};
 
-		const games: Array<Game> = [];
-
-		for (const [_, value] of gamesMap.entries()) {
-			games.push(value);
-		}
+const handler: Handler<Dependencies, {}, Promise<{ games: Array<Game> }>> =
+	({ Game }) =>
+	async () => {
+		const games = await Game.findMany({});
 
 		return { games };
-	},
+	};
+
+export default {
+	handler,
 };

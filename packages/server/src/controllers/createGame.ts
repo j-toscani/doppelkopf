@@ -1,28 +1,32 @@
-import { createGame } from '../game/createGame';
 import { Context, t } from 'elysia';
-import { getGames } from '../game/games';
 import { Handler } from 'shared';
+import { GameRepo, UserRepo } from '../db/db';
+import { BadRequestError } from '../errors';
 
 const bodySchema = t.Object({
-	player: t.Array(t.String()),
+	player: t.String(),
 });
 
 type BodyType = (typeof bodySchema)['static'];
 
-type Dependencies = { games: typeof getGames }
-type CTX = Context<{ body: BodyType }>
+type Dependencies = { Game: typeof GameRepo; User: typeof UserRepo };
+type CTX = Context<{ body: BodyType }>;
 
 const context = { body: bodySchema };
-const handler: Handler<Dependencies, CTX, { id: string }> =
-	({ games }) =>
-	({ body }) => {
-		const game = createGame(body.player);
+const handler: Handler<Dependencies, CTX, Promise<{ id: string }>> =
+	({ Game, User }) =>
+	async ({ body }) => {
+		const creator = await User.findOne({ name: body.player });
 
-		games().set(game.id, game);
+		if (!creator) throw new BadRequestError('Cannot create Game without user');
+
+		const game = Game.create({ seats: [creator] });
+		await Game.insertOne(game);
+
 		return { id: game.id };
 	};
 
 export default {
 	context,
-	handler: handler({ games: getGames }),
+	handler: handler({ Game: GameRepo, User: UserRepo }),
 };

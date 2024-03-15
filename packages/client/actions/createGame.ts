@@ -8,7 +8,7 @@ export const createGame = async () => {
 	const user = cookies().get('user');
 	if (!user?.value) redirect('/');
 	const {
-		game: { id },
+		id,
 	} = await createGameRequest(user.value);
 	revalidatePath('/game');
 	redirect(`/game/${id}`);

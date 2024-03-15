@@ -2,7 +2,7 @@ import { Context, NotFoundError, t } from 'elysia';
 import { isCardId } from 'shared';
 import { playCard } from '../game/playCard';
 import { BadRequestError } from '../errors';
-import { getGames } from '../game/games';
+import { GameRepo, UserRepo } from '../db/db';
 
 const bodySchema = t.Object({
 	card: t.String(),
@@ -17,16 +17,20 @@ const context = {
 };
 
 const handler =
-	({ games }: { games: typeof getGames }) =>
-	({ body, params }: Context<{ body: BodySchema; params: Params }>) => {
+	({ Game, User }: { Game: typeof GameRepo; User: typeof UserRepo }) =>
+	async ({ body, params }: Context<{ body: BodySchema; params: Params }>) => {
 		const { id } = params;
-		const game = games().get(id);
+		const [game, user] = await Promise.all([
+			Game.findOne({ id }),
+			User.findOne({ name: body.player }),
+		]);
 
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
+		if (!user) throw new NotFoundError(`User with [id] ${id} does not exist.`);
 		if (!isCardId(body.card))
 			throw new BadRequestError(`String ${body.card} is not a valid [card.id].`);
 
-		const updatedHand = playCard(game, body.player, body.card);
+		const updatedHand = playCard(game, user, body.card);
 
 		return {
 			table: game.table,
@@ -35,6 +39,6 @@ const handler =
 	};
 
 export default {
-	handler: handler({ games: getGames }),
+	handler: handler({ Game: GameRepo, User: UserRepo }),
 	context,
 };

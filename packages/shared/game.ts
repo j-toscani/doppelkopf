@@ -1,4 +1,5 @@
-import { Color, Picture, TablePositions } from "./constants";
+import { User } from './db';
+import { Color, Picture, TablePositions } from './constants';
 
 type Value<T extends {}> = T[keyof T];
 
@@ -11,11 +12,11 @@ export const isCardId = (s: string): s is CardId => {
 	if (s.length > 3) return false;
 	const [copy, color, picture] = s;
 
-	const correctCopyValue = ['1', '2'].includes(copy)
-	const correctPictureValue = parseInt(picture, 10) > 0 && parseInt(picture, 10) < 5
-	const correctColorValue = parseInt(color, 10) > 0 && parseInt(color, 10) < 4
+	const correctCopyValue = ['1', '2'].includes(copy);
+	const correctPictureValue = parseInt(picture, 10) > 0 && parseInt(picture, 10) < 5;
+	const correctColorValue = parseInt(color, 10) > 0 && parseInt(color, 10) < 4;
 
-	return correctColorValue && correctCopyValue && correctPictureValue ;
+	return correctColorValue && correctCopyValue && correctPictureValue;
 };
 
 export interface Card {
@@ -53,22 +54,11 @@ export type GameOrder = Record<CardId, GameOrderEntry>;
 export type DealtHands<C = OrderedCard> = [Array<C>, Array<C>, Array<C>, Array<C>];
 
 export type Table = Array<{ card: OrderedCard; from: string }>;
-type Player = string
 
-export interface Game {
-	id: string;
-	hands: Array<Array<OrderedCard>>;
-	table: Table;
-	rounds: Array<Table>;
-	seats: Array<Player>;
-	activeSeat: number;
-}
-
-export type TablePosition = typeof TablePositions[keyof typeof TablePositions]
+export type TablePosition = (typeof TablePositions)[keyof typeof TablePositions];
 
 export type OpponentState = {
 	user: string;
 	position: TablePosition;
 	cardsInHand: number;
-  };
-
+};

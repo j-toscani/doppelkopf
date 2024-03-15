@@ -1,5 +1,4 @@
 import { API_HOST } from '@/constants';
-import { URL } from 'url';
 
 type Method = 'GET' | 'PUT' | 'POST' | 'DELETE';
 type RequestOptions = {

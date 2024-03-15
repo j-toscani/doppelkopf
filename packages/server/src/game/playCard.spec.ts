@@ -32,8 +32,11 @@ describe('Play a Card', () => {
 
 	it('Errors if player is missing card played', () => {
 		const [card] = game.hands[SECOND_ARRAY_INDEX];
+		const player = game.seats[FIRST_ARRAY_INDEX];
 
-		const play = () => playCard(game, game.seats[FIRST_ARRAY_INDEX], card.id);
+		expect(player).toBeTruthy();
+
+		const play = () => playCard(game, player!, card.id);
 		expect(play).toThrow();
 	});
 
@@ -42,7 +45,8 @@ describe('Play a Card', () => {
 		const [card] = game.hands[game.activeSeat];
 		const oldCardCount = game.hands[game.activeSeat].length;
 
-		const play = () => playCard(game, player, card.id);
+		expect(player).toBeTruthy();
+		const play = () => playCard(game, player!, card.id);
 
 		const hand = play();
 		expect(hand).toHaveLength(oldCardCount - ADD_ONE);
@@ -53,8 +57,9 @@ describe('Play a Card', () => {
 	it('Trows error if card is played second time', () => {
 		const player = game.seats[game.activeSeat];
 		const [card] = game.hands[game.activeSeat];
-
-		const play = () => playCard(game, player, card.id);
+		
+		expect(player).toBeTruthy();
+		const play = () => playCard(game, player!, card.id);
 
 		play();
 		expect(game.table.length).toBeTruthy();
@@ -67,7 +72,7 @@ describe('Play a Card', () => {
 		const player = game.seats[game.activeSeat];
 		const [card] = game.hands[game.activeSeat];
 
-		playCard(game, player, card.id);
+		playCard(game, player!, card.id);
 
 		expect(game.table.length).toBeTruthy();
 		expect(game.table[FIRST_ARRAY_INDEX]).toBeTruthy();
@@ -75,6 +80,6 @@ describe('Play a Card', () => {
 		const cardOnTable = game.table[FIRST_ARRAY_INDEX];
 
 		expect(cardOnTable.card.id).toBe(card.id);
-		expect(cardOnTable.from).toBe(player.name);
+		expect(cardOnTable.from).toBe(player!.name);
 	});
 });

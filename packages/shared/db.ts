@@ -13,6 +13,6 @@ export type Game = {
 	hands: Array<Array<OrderedCard>>;
 	table: Table;
 	rounds: Array<Table>;
-	seats: Array<User>;
+	seats: Array<User | null>;
 	activeSeat: number;
 };

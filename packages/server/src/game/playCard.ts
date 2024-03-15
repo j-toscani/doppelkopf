@@ -1,11 +1,11 @@
 import { CardId, Game, OrderedCard, User } from 'shared';
 
 export const playCard = (game: Game, player: User, cardId: CardId): Array<OrderedCard> => {
-	if (player.name !== game.seats[game.activeSeat].name)
+	if (game.seats[game.activeSeat] && player.name !== game.seats[game.activeSeat]?.name)
 		throw new Error('Only the active player is allowed to play a card.');
 
 	const playerHand = game.hands[game.activeSeat];
-	if (!playerHand || !game.seats.map(({ name }) => name).includes(player.name))
+	if (!playerHand || !game.seats.map((u) => u?.name).filter(Boolean).includes(player.name))
 		throw new Error('Player not in Game!');
 
 	const playerCard = playerHand.find((card) => card.id === cardId);

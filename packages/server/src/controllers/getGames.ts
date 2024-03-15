@@ -7,12 +7,8 @@ type Dependencies = {
 
 const handler: Handler<Dependencies, {}, Promise<{ games: Array<Game> }>> =
 	({ Game }) =>
-	async () => {
-		const games = await Game.findMany({});
-
-		return { games };
-	};
+	async () => ({ games: await Game.findMany({}) });
 
 export default {
-	handler,
+	handler: handler({ Game: GameRepo }),
 };

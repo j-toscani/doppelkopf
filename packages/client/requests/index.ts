@@ -2,7 +2,7 @@ import { request } from '@/utils/request';
 import { Game, OrderedCard, User } from 'shared';
 
 export const createGame = (user: string) =>
-	request<{ game: Game }>('/games/new', {
+	request<{ id: string }>('/games/new', {
 		method: 'PUT',
 		input: user,
 	});

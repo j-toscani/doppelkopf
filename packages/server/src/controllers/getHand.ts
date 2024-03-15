@@ -1,19 +1,19 @@
 import { Context, NotFoundError } from 'elysia';
 import { getPlayableCards } from '../game/getPlayableCards';
-import { getGames } from '../game/games';
 import { Handler, MAX_PLAYER_COUNT, NOT_FOUND_INDEX, OrderedCard } from 'shared';
+import { GameRepo } from '../db/db';
 
-type Depencies = { games: typeof getGames };
+type Depencies = { Game: typeof GameRepo };
 type CTX = Context<{ query: Record<string, string | null>; params: Record<'id', string> }>;
-type Result = { hand: Array<OrderedCard> };
+type Result = Promise<{ hand: Array<OrderedCard> }>;
 
 const handler: Handler<Depencies, CTX, Result> =
-	({ games }) =>
-	({ params, query }) => {
+	({ Game }) =>
+	async ({ params, query }) => {
 		const { id } = params;
 		const { player } = query;
 
-		const game = games().get(id);
+		const game = await Game.findOne({ id });
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
 		const seatIndex = game.seats.findIndex((p) => p.name === player);
@@ -25,5 +25,5 @@ const handler: Handler<Depencies, CTX, Result> =
 	};
 
 export default {
-	handler: handler({ games: getGames }),
+	handler: handler({ Game: GameRepo }),
 };

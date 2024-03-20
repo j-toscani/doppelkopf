@@ -16,8 +16,5 @@
     "client:lint": "bun run --cwd packages/client lint",
     "client:test-ci": "bun run --cwd packages/client test:ci"
   },
-  "type": "module",
-  "workspaces": [
-    "packages/*"
-  ]
+  "type": "module"
 }

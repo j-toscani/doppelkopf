@@ -10,7 +10,7 @@ export type CardId = `${'1' | '2'}${ColorV}${PictureV}`;
 
 export const isCardId = (s: string): s is CardId => {
 	if (s.length > 3) return false;
-	const [copy, color, picture] = s;
+	const [copy, color, picture] = [s[0], s[1], s[2]];
 
 	const correctCopyValue = ['1', '2'].includes(copy);
 	const correctPictureValue = parseInt(picture, 10) > 0 && parseInt(picture, 10) < 5;

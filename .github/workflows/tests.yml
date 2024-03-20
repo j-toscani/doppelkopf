@@ -18,7 +18,7 @@ jobs:
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    - run: cd pacakges/client && bun i && cd ../../
+    - run: cd packages/client && bun i && cd ../../
     - run: bun run client:lint
     # - run: bun run client:test-ci
 
@@ -31,7 +31,7 @@ jobs:
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    - run: cd pacakges/server && bun i && cd ../../
+    - run: cd packages/server && bun i && cd ../../
     - run: bun run server:lint
     - run: bun run server:tsc
     - run: bun run server:test

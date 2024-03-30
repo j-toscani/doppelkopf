@@ -26,7 +26,7 @@ const handler =
 		]);
 
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
-		if (!user) throw new NotFoundError(`User with [id] ${id} does not exist.`);
+		if (!user) throw new NotFoundError(`User with [id] ${body.player} does not exist.`);
 		if (!isCardId(body.card))
 			throw new BadRequestError(`String ${body.card} is not a valid [card.id].`);
 

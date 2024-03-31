@@ -58,7 +58,7 @@ export type Table = Array<{ card: OrderedCard; from: string }>;
 export type TablePosition = (typeof TablePositions)[keyof typeof TablePositions];
 
 export type OpponentState = {
-	user: string;
+	user: string | null;
 	position: TablePosition;
 	cardsInHand: number;
 };

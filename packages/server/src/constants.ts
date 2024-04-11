@@ -4,6 +4,7 @@ const NOT_FOUND = 404;
 const INTERNAL_SERVER_ERROR = 500;
 
 export const FIRST_ARRAY_INDEX = 0;
+export const NATURAL_ZERO = 0;
 export const LAST_ITEM_INDEX = -1;
 
 

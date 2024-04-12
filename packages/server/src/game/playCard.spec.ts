@@ -80,6 +80,6 @@ describe('Play a Card', () => {
 		const cardOnTable = game.table[FIRST_ARRAY_INDEX];
 
 		expect(cardOnTable.card.id).toBe(card.id);
-		expect(cardOnTable.from).toBe(player!.name);
+		expect(cardOnTable.from).toBe(players.findIndex(({name}) => name === player?.name));
 	});
 });

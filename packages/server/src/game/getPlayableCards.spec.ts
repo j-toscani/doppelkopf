@@ -33,7 +33,7 @@ describe('Get Playable Cards', () => {
 		const definingCard = createStartingCard(Color.Spade, Picture.Queen);
 		const table: Table = [
 			{
-				from: '1',
+				from: 0,
 				card: definingCard,
 			},
 		];
@@ -47,7 +47,7 @@ describe('Get Playable Cards', () => {
 		const definingCard = createStartingCard(Color.Club, Picture.Ace);
 		const table: Table = [
 			{
-				from: '1',
+				from: 0,
 				card: definingCard,
 			},
 		];
@@ -70,7 +70,7 @@ describe('Get Playable Cards', () => {
 		const definingCard = createStartingCard(Color.Hearth, Picture.Ace);
 		const table: Table = [
 			{
-				from: '1',
+				from: 0,
 				card: definingCard,
 			},
 		];
@@ -93,7 +93,7 @@ describe('Get Playable Cards', () => {
 		const definingCard = createStartingCard(Color.Hearth, Picture.Queen);
 		const table: Table = [
 			{
-				from: '1',
+				from: 0,
 				card: definingCard,
 			},
 		];

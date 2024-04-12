@@ -1,6 +1,6 @@
 import { Game } from 'shared';
 
-export const findRoundWinner = (round: Game['rounds'][number]): string => {
+export const findRoundWinner = (round: Game['rounds'][number]): number => {
 	const FIRST_PLAYED_INDEX = 0;
 	const hasTrumpCards =
 		round[FIRST_PLAYED_INDEX].card.trump || round.some(({ card }) => card.trump);

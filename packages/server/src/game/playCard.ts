@@ -12,7 +12,7 @@ export const playCard = (game: Game, player: User, cardId: CardId): Array<Ordere
 	if (!playerCard) throw new Error('Card not in players hand!');
 
 	game.hands[game.activeSeat] = playerHand.filter((card) => card.id !== cardId);
-	game.table.push({ from: player.name, card: playerCard });
+	game.table.push({ from: game.activeSeat, card: playerCard });
 
 	return game.hands[game.activeSeat];
 };

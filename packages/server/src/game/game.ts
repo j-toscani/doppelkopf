@@ -14,8 +14,6 @@ export const onRoundEnd = (game: Game) => {
 };
 
 const allCardsPlayed = (game: Game): boolean => game.table.length === MAX_PLAYER_COUNT;
-const _findPreviousPlayerInRound = (game: Game): number =>
-	(game.activeSeat - ADD_ONE) % MAX_PLAYER_COUNT;
 
 const findNextPlayerInRound = (game: Game): number =>
 	(game.activeSeat + ADD_ONE) % MAX_PLAYER_COUNT;

@@ -26,27 +26,28 @@ const calculateGamePoints = (rounds: Array<Table>) =>
 		return acc;
 	}, {});
 
-const getParties = (groupedCards: GroupedCards) => Object.entries(groupedCards).reduce<{ re: Array<string>, fel: Array<string> }>(
-	(acc, [user, cards]) => {
-		const isRe = !!cards.find(
-			(card) => card.picture === Picture.Queen && card.color === Color.Spade,
-		);
-		acc[isRe ? 're' : 'fel'].push(user)
-		return acc;
-	},
-	{ re: [], fel: [] },
-);
+const getParties = (groupedCards: GroupedCards) =>
+	Object.entries(groupedCards).reduce<{ re: Array<string>; fel: Array<string> }>(
+		(acc, [user, cards]) => {
+			const isRe = !!cards.find(
+				(card) => card.picture === Picture.Queen && card.color === Color.Spade,
+			);
+			acc[isRe ? 're' : 'fel'].push(user);
+			return acc;
+		},
+		{ re: [], fel: [] },
+	);
 
 export const getEndOfGameStates = (game: Game) => {
 	const hands = recreateHands(game);
-	const parties = getParties(hands)
-	const points = calculateGamePoints(game.rounds)
+	const parties = getParties(hands);
+	const gamPoints = calculateGamePoints(game.rounds);
 
 	return {
-		points: {
-			re: parties.re.reduce((acc, user) => points[user] + acc, NATURAL_ZERO),
-			fel: parties.fel.reduce((acc, user) => points[user] + acc, NATURAL_ZERO)
+		gamePoints: {
+			re: parties.re.reduce((acc, user) => gamPoints[user] + acc, NATURAL_ZERO),
+			fel: parties.fel.reduce((acc, user) => gamPoints[user] + acc, NATURAL_ZERO),
 		},
-		parties
-	}
+		parties,
+	};
 };

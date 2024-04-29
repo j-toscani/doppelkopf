@@ -1,6 +1,5 @@
 import { Color, Game, OrderedCard, Picture, Table } from 'shared';
 import {
-	MAX_POINTS,
 	NATURAL_ZERO,
 	REVERSE_SIGN,
 	WIN_THRESHOLD_30,

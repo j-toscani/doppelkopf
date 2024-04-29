@@ -17,34 +17,34 @@ describe('Peak result of last round', () => {
 			...game,
 			rounds: Array.from(
 				new Array(MAX_PLAYER_COUNT),
-				(e, i) =>
+				(e, i): Table =>
 					game.hands.map((hand) => ({
 						card: hand[i],
-						from: game.seats[i]?.name,
-					})) as Table,
+						from: i,
+					})),
 			),
 		};
 		const lastRound = peakLastRound(newGame);
 
-        expect(lastRound).toBeDefined()
+		expect(lastRound).toBeDefined();
 
-        const lastElementOfRounds = newGame.rounds.pop()
-        
-        lastRound?.forEach((entry, i) => {
-            expect(entry.card).toBe(lastElementOfRounds![i].card)
-            expect(entry.from).toBe(lastElementOfRounds![i].from)
-        })
+		const lastElementOfRounds = newGame.rounds.pop();
+
+		lastRound?.forEach((entry, i) => {
+			expect(entry.card).toBe(lastElementOfRounds![i].card);
+			expect(entry.from).toBe(lastElementOfRounds![i].from);
+		});
 	});
 	it('Peaking multiple times does not change the result', () => {
 		const newGame = {
 			...game,
 			rounds: Array.from(
 				new Array(MAX_PLAYER_COUNT),
-				(e, i) =>
+				(e, i): Table =>
 					game.hands.map((hand) => ({
 						card: hand[i],
-						from: game.seats[i]?.name,
-					})) as Table,
+						from: i,
+					})),
 			),
 		};
 
@@ -52,13 +52,13 @@ describe('Peak result of last round', () => {
 		peakLastRound(newGame);
 		const lastRound = peakLastRound(newGame);
 
-        expect(lastRound).toBeDefined()
+		expect(lastRound).toBeDefined();
 
-        const lastElementOfRounds = newGame.rounds.pop()
+		const lastElementOfRounds = newGame.rounds.pop();
 
-        lastRound?.forEach((entry, i) => {
-            expect(entry.card).toBe(lastElementOfRounds![i].card)
-            expect(entry.from).toBe(lastElementOfRounds![i].from)
-        })
+		lastRound?.forEach((entry, i) => {
+			expect(entry.card).toBe(lastElementOfRounds![i].card);
+			expect(entry.from).toBe(lastElementOfRounds![i].from);
+		});
 	});
 });

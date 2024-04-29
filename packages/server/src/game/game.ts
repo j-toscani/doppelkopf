@@ -14,14 +14,12 @@ export const onRoundEnd = (game: Game) => {
 };
 
 const allCardsPlayed = (game: Game): boolean => game.table.length === MAX_PLAYER_COUNT;
-const _findPreviousPlayerInRound = (game: Game): number =>
-	(game.activeSeat - ADD_ONE) % MAX_PLAYER_COUNT;
 
 const findNextPlayerInRound = (game: Game): number =>
 	(game.activeSeat + ADD_ONE) % MAX_PLAYER_COUNT;
 
 export const afterCardPlayed = (game: Game) => {
 	game.activeSeat = allCardsPlayed(game)
-		? game.seats.findIndex((player) => player && player.name === findRoundWinner(game.table))
+		? findRoundWinner(game.table)
 		: findNextPlayerInRound(game);
 };

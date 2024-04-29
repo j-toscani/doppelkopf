@@ -1,5 +1,7 @@
-import { describe, it } from 'bun:test';
+import { describe, it, expect } from 'bun:test';
 import { Game } from 'shared';
+import { getEndOfGameStates } from './getEndOfGameState';
+import { REVERSE_SIGN } from '../constants';
 
 const fixture: Game = {
 	id: '884f1cc5-75a0-481d-b32c-d6369598effa',
@@ -524,9 +526,39 @@ const fixture: Game = {
 	activeSeat: 0,
 };
 
+const expectedResult = {
+	gamePoints: {
+		re: 201,
+		fel: 39,
+	},
+	winPoints: {
+		re: 3,
+		fel: -3,
+	},
+	parties: {
+		re: ['0', '1'],
+		fel: ['2', '3'],
+	},
+};
+
 describe('Get end of Game state.', () => {
-	it.todo('Calculates the game points correctly');
-	it.todo('Returns positive winpoints for winners and negative ones for losers');
-	it.todo('Sets the parties correctly');
+	const { gamePoints, parties, winPoints } = getEndOfGameStates(fixture);
+	it('Calculates the game points correctly', () => {
+		expect(expectedResult.gamePoints.re).toBe(gamePoints.re);
+		expect(expectedResult.gamePoints.fel).toBe(gamePoints.fel);
+	});
+	it('Returns positive winpoints for winners and negative ones for losers', () => {
+		expect(expectedResult.winPoints.re).toBe(winPoints.re);
+		expect(expectedResult.winPoints.fel).toBe(winPoints.fel);
+		expect(winPoints.fel).toBe(winPoints.re * REVERSE_SIGN);
+	});
+	it('Sets the parties correctly', () => {
+		const [re1, re2] = expectedResult.parties.re;
+		const [fel1, fel2] = expectedResult.parties.fel;
+		expect(parties.re).toContain(re1);
+		expect(parties.re).toContain(re2);
+		expect(parties.fel).toContain(fel1);
+		expect(parties.fel).toContain(fel2);
+	});
 	it.todo('Lists what the win points were earned for');
 });

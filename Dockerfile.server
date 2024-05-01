@@ -7,7 +7,7 @@ WORKDIR /usr/src/app
 # this will cache them and speed up future builds
 FROM base AS install
 RUN mkdir -p /temp/prod/server
-COPY ./packages/server/package.json ./packages/server/bun.lockb  /temp/prod/server
+COPY ./packages/server/package.json ./packages/server/bun.lockb  /temp/prod/server/
 # shared is a local dep will error if not present
 COPY ./packages/shared /temp/prod/shared
 RUN cd /temp/prod/server && bun install --frozen-lockfile

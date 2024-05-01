@@ -15,7 +15,11 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"mongodb.mongodb-vscode"
+				"mongodb.mongodb-vscode",
+				"bradlc.vscode-tailwindcss",
+				"oven.bun-vscode",
+				"github.vscode-github-actions",
+				"esbenp.prettier-vscode"
 			]
 		}
 	},

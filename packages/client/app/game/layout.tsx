@@ -7,7 +7,7 @@ export default function GameLayout({ children }: { children: React.ReactNode }) 
 	if (!cookies().get('user')?.value) redirect('/');
 	return (
 		<>
-			<header className="container mx-auto py-4">
+			<header className="container mx-auto flex justify-end py-4">
 				<DispatchActionButton action={logoutUser} title="Logout">
 					Logout
 				</DispatchActionButton>

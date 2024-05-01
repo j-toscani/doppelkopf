@@ -1,20 +1,26 @@
 # doppelkopf
 
-To install dependencies:
+This Repo uses [Devcontainers](https://containers.dev/). When using VSCode, your IDE should ask you to install an extension. Just follow the recommended steps and you will have a fully functioning environment in minutes.
+
+If you are not using an IDE which supports devcontainers (e.g. Zed) you will need to install [Bun](https://bun.sh/docs/installation) as this project uses it as it´s runtime.
+
+You will then have to install the package dependencies with the following commands:
 
 ```bash
-cd ./client
+cd ./packages/client
 bun install
 
 cd ../server
 bun install
 ```
 
-You will need a running mongodb to connect to. You can start one using Docker with the follwoing command:
+To run the projects, move into the root folder of the project and run the following commands ins seperate terminal windows:
 
+```bash
+bun run server:dev
+bun run client:dev
 ```
-docker run --name <name of your container> -p 27017:27017 --expose 27017 -v $(pwd)/data:/bitname/mongodb -e MONGODB_ROOT_PASSWORD=123 -e MONGODB_USERNAME=<user name> -e MONGODB_PASSWORD=<password> -e MONGODB_DATABASE=<name of db> bitnami/mongodb:latest
-```
+
 # Disclaimer
 
 As doppelkopf is a pretty complex game it will take quite a while to build. Hence, I will focus to create a minimal version first.

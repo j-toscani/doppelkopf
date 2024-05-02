@@ -8,11 +8,15 @@ export type User = {
 	name: string;
 };
 
+export type Seat = {
+	user: User | null,
+	isRe: boolean,
+	hand: Array<OrderedCard>
+}
+
 export type Game = {
 	id: string;
-	hands: Array<Array<OrderedCard>>;
-	table: Table;
 	rounds: Array<Table>;
-	seats: Array<User | null>;
+	seats: Array<Seat>;
 	activeSeat: number;
 };

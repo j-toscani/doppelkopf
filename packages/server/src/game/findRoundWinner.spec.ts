@@ -18,8 +18,9 @@ describe('Find the Round Winner', () => {
 		];
 		const orderedRound = applyOrder(cards, defaultOrder);
 		const tableRound = players.map((player, index) => ({
-			from: players.findIndex((p) => p === player),
+			seat: players.findIndex((p) => p === player),
 			card: orderedRound[index]!,
+			from: player
 		}));
 		const winner = findRoundWinner(tableRound);
         const winnerIndex = 2;
@@ -36,8 +37,9 @@ describe('Find the Round Winner', () => {
 		];
 		const orderedRound = applyOrder(cards, defaultOrder);
 		const tableRound = players.map((player, index) => ({
-			from: players.findIndex((p) => p === player),
+			seat: players.findIndex((p) => p === player),
 			card: orderedRound[index]!,
+			from: player
 		}));
 		const winner = findRoundWinner(tableRound);
         const winnerIndex = 0;
@@ -53,8 +55,9 @@ describe('Find the Round Winner', () => {
 		];
 		const orderedRound = applyOrder(cards, defaultOrder);
 		const tableRound = players.map((player, index) => ({
-			from: players.findIndex((p) => p === player),
+			seat: players.findIndex((p) => p === player),
 			card: orderedRound[index]!,
+			from: player
 		}));
 		const winner = findRoundWinner(tableRound);
         const winnerIndex = 3;
@@ -71,8 +74,9 @@ describe('Find the Round Winner', () => {
 		];
 		const orderedRound = applyOrder(cards, defaultOrder);
 		const tableRound = players.map((player, index) => ({
-			from: players.findIndex((p) => p === player),
+			seat: players.findIndex((p) => p === player),
 			card: orderedRound[index]!,
+			from: player
 		}));
 		const winner = findRoundWinner(tableRound);
         const winnerIndex = 1;

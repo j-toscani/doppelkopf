@@ -5,12 +5,11 @@ import { REVERSE_SIGN } from '../constants';
 
 const fixture: Game = {
 	id: '884f1cc5-75a0-481d-b32c-d6369598effa',
-	hands: [[], [], [], []],
-	table: [],
 	rounds: [
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 1,
 					color: 3,
@@ -22,7 +21,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 4,
 					color: 3,
@@ -34,7 +34,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 4,
 					color: 3,
@@ -46,7 +47,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 1,
 					color: 3,
@@ -60,7 +62,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 4,
 					color: 1,
@@ -72,7 +75,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 1,
 					color: 1,
@@ -84,7 +88,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 5,
 					color: 3,
@@ -96,7 +101,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 4,
 					color: 1,
@@ -110,7 +116,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 4,
 					color: 4,
@@ -122,7 +129,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 4,
 					color: 2,
@@ -134,7 +142,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 5,
 					color: 3,
@@ -146,7 +155,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 1,
 					color: 1,
@@ -160,7 +170,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 1,
 					color: 4,
@@ -172,7 +183,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 5,
 					color: 2,
@@ -184,7 +196,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 5,
 					color: 1,
@@ -196,7 +209,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 5,
 					color: 1,
@@ -210,7 +224,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 5,
 					color: 4,
@@ -222,7 +237,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 2,
 					color: 1,
@@ -234,7 +250,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 1,
 					color: 4,
@@ -246,7 +263,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 4,
 					color: 2,
@@ -260,7 +278,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 2,
 					color: 4,
@@ -272,7 +291,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 3,
 					color: 4,
@@ -284,7 +304,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 5,
 					color: 4,
@@ -296,7 +317,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 5,
 					color: 2,
@@ -310,7 +332,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 2,
 					color: 4,
@@ -322,7 +345,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 3,
 					color: 2,
@@ -334,7 +358,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 2,
 					color: 2,
@@ -346,7 +371,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 4,
 					color: 4,
@@ -360,7 +386,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 2,
 					color: 3,
@@ -372,7 +399,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 3,
 					color: 1,
@@ -384,7 +412,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 2,
 					color: 1,
@@ -396,7 +425,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 2,
 					color: 2,
@@ -410,7 +440,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 2,
 					color: 3,
@@ -422,7 +453,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 3,
 					color: 3,
@@ -434,7 +466,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 3,
 					color: 3,
@@ -446,7 +479,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 3,
 					color: 4,
@@ -460,7 +494,8 @@ const fixture: Game = {
 		],
 		[
 			{
-				from: 0,
+				from: '0',
+				seat: 0,
 				card: {
 					picture: 3,
 					color: 1,
@@ -472,7 +507,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 1,
+				from: '1',
+				seat: 1,
 				card: {
 					picture: 1,
 					color: 2,
@@ -484,7 +520,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 2,
+				from: '2',
+				seat: 2,
 				card: {
 					picture: 1,
 					color: 2,
@@ -496,7 +533,8 @@ const fixture: Game = {
 				},
 			},
 			{
-				from: 3,
+				from: '3',
+				seat: 3,
 				card: {
 					picture: 3,
 					color: 2,
@@ -511,16 +549,26 @@ const fixture: Game = {
 	],
 	seats: [
 		{
-			name: '1',
+			user: { name: '1' },
+			hand: [],
+			isRe: true,
 		},
 		{
-			name: '2',
+			user: { name: '2' },
+			hand: [],
+
+			isRe: true,
 		},
 		{
-			name: '3',
+			user: { name: '3' },
+			hand: [],
+
+			isRe: false,
 		},
 		{
-			name: '4',
+			user: { name: '4' },
+			hand: [],
+			isRe: false,
 		},
 	],
 	activeSeat: 0,

@@ -16,12 +16,12 @@ const handler: Handler<Depencies, CTX, Result> =
 		const game = await Game.findOne({ id });
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-		const seatIndex = game.seats.findIndex((p) => p && p.name === player);
+		const seatIndex = game.seats.findIndex(({user}) => user && user.name === player);
 
 		if (seatIndex === NOT_FOUND_INDEX || seatIndex >= MAX_PLAYER_COUNT)
 			throw new NotFoundError(`Player with [id] ${player} does not exist.`);
 
-		return { hand: getPlayableCards(game.table, game.hands[seatIndex]) };
+		return { hand: getPlayableCards(game.rounds.at(-1) ?? [], game.seats[seatIndex].hand) };
 	};
 
 export default {

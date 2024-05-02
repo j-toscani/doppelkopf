@@ -3,6 +3,7 @@ import { ADD_ONE, Game, User } from 'shared';
 import { createGame } from '../db/createGame';
 import { getOpponentCardCount } from './getOpponentCardCount';
 import { FIRST_ARRAY_INDEX } from '../constants';
+import { getHands } from '../utils/getHands';
 
 const users: Array<User> = [{ name: 'John' }, { name: 'Ron' }, { name: 'Sophy' }, { name: 'Mary' }];
 
@@ -15,12 +16,14 @@ const cases = [
 	{ player: 'Mary', left: 'John', right: 'Sophy' },
 ];
 
+
+
 describe('Get Opponent Card Count', () => {
 	beforeEach(() => {
-		game = createGame({ seats: users });
+		game = createGame({ users: users });
 	});
 	it('Returns the number of cards in opponents hand + userId as an array', () => {
-		game.hands.forEach((hand) => hand.pop());
+		getHands(game).forEach((hand) => hand.pop());
 
 		const EXPECTED_CARDS_IN_HAND = 9;
 		const result = getOpponentCardCount(game, 'John');
@@ -28,12 +31,12 @@ describe('Get Opponent Card Count', () => {
 		expect(result.every((r) => r.cardsInHand === EXPECTED_CARDS_IN_HAND)).toBe(true);
 	});
 	it('Retuns correct number of cards played if not all players played even amount of cards', () => {
-		game.hands.forEach((hand) => hand.pop());
+		getHands(game).forEach((hand) => hand.pop());
 
 		const EXPECTED_CARDS_IN_HAND = 9;
 		const SECOND_PLAYER_INDEX = 1;
 
-		game.hands[SECOND_PLAYER_INDEX].pop();
+		getHands(game)[SECOND_PLAYER_INDEX].pop();
 
 		const result = getOpponentCardCount(game, 'John');
 
@@ -43,14 +46,14 @@ describe('Get Opponent Card Count', () => {
 	cases.forEach(({ player, left, right }) => {
 		describe(player, () => {
 			it('First item in the array returned is the user sitting on the left from current user', () => {
-				game.hands.forEach((hand) => hand.pop());
+				getHands(game).forEach((hand) => hand.pop());
 
 				const [first] = getOpponentCardCount(game, player);
 
 				expect(first.user).toBe(left);
 			});
 			it('Last item in the array returned is the user sitting on the right from current user', () => {
-				game.hands.forEach((hand) => hand.pop());
+				getHands(game).forEach((hand) => hand.pop());
 
 				const [_, __, last] = getOpponentCardCount(game, player);
 
@@ -59,8 +62,8 @@ describe('Get Opponent Card Count', () => {
 		});
 	});
 	it('Returns `[]` if user is not in the game anymore', () => {
-		game.hands.forEach((hand) => hand.pop());
-		game.seats[FIRST_ARRAY_INDEX] = null;
+		getHands(game).forEach((hand) => hand.pop());
+		game.seats[FIRST_ARRAY_INDEX].user = null;
 
 		const result = getOpponentCardCount(game, 'John');
 

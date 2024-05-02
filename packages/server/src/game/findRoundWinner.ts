@@ -12,6 +12,6 @@ export const findRoundWinner = (round: Game['rounds'][number]): number => {
 	const maxOrder = Math.max(...cardsToConsider.map(({ card }) => card.order));
 
 	// cardsToConsider is subset of round
-	// as order is included in the subset, it will also be included in the bigger set
-	return round.find(({ card }) => card.order === maxOrder)!.from;
+	// as maxOrder is included in the subset, it will also be included in the bigger set
+	return round.findIndex(({ card }) => card.order === maxOrder)!;
 };

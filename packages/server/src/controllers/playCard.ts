@@ -33,7 +33,7 @@ const handler =
 		const updatedHand = playCard(game, user, body.card);
 
 		return {
-			table: game.table,
+			table: game.rounds.at(-1),
 			hand: updatedHand,
 		};
 	};

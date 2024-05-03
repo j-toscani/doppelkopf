@@ -4,7 +4,7 @@ import { Game, OrderedCard, User } from 'shared';
 export const createGame = (user: string) =>
 	request<{ id: string }>('/games/new', {
 		method: 'PUT',
-		input: user,
+		input: {player: user},
 	});
 
 export const createUser = (name: string) =>

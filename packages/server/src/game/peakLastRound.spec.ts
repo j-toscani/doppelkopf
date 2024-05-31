@@ -5,7 +5,7 @@ import { Game, MAX_PLAYER_COUNT, Table } from 'shared';
 import { getHands } from '../utils/getHands';
 
 const users = [{ name: 'karl' }, { name: 'frank' }, { name: 'mary' }, { name: 'andrea' }];
-const game = createGame({ users });
+const game: Game = createGame({ users });
 
 describe('Peak result of last round', () => {
 	it('Returns cards played in the previous round', () => {

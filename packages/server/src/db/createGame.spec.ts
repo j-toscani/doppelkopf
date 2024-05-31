@@ -4,9 +4,9 @@ import { FIRST_ARRAY_INDEX } from '../constants';
 import { Color, FULL_HAND_OF_CARDS_COUNT, Game, MAX_PLAYER_COUNT, Picture } from 'shared';
 import { getHands } from '../utils/getHands';
 
-const LAST_FROM_END = -1;
+const LAST_FROM_END = LAST_ITEM_INDEX;
 const players = ['1', '2', '3', '4'].map((name) => ({ name }));
-const game = createGame({ users: players });
+const game: Game = createGame({ users: players });
 
 describe('Creating Game', () => {
 	it('Always starts with four hands and four seats', () => {
@@ -31,7 +31,7 @@ describe('Creating Game', () => {
 	});
 
 	it('Creates a game with an empty table', () => {
-		const  table  = game.rounds.at(-1);
+		const  table  = game.rounds.at(LAST_ITEM_INDEX);
 
 		expect(table).toBeArray();
 		expect(table).toBeEmpty();

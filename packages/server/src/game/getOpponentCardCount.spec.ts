@@ -20,7 +20,7 @@ const cases = [
 
 describe('Get Opponent Card Count', () => {
 	beforeEach(() => {
-		game = createGame({ users: users });
+		game = createGame({ users });
 	});
 	it('Returns the number of cards in opponents hand + userId as an array', () => {
 		getHands(game).forEach((hand) => hand.pop());

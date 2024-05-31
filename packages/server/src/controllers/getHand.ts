@@ -21,7 +21,7 @@ const handler: Handler<Depencies, CTX, Result> =
 		if (seatIndex === NOT_FOUND_INDEX || seatIndex >= MAX_PLAYER_COUNT)
 			throw new NotFoundError(`Player with [id] ${player} does not exist.`);
 
-		return { hand: getPlayableCards(game.rounds.at(-1) ?? [], game.seats[seatIndex].hand) };
+		return { hand: getPlayableCards(game.rounds.at(LAST_ITEM_INDEX) ?? [], game.seats[seatIndex].hand) };
 	};
 
 export default {

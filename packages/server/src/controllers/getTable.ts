@@ -1,6 +1,7 @@
 import { Context, NotFoundError } from 'elysia';
 import { Handler, Table } from 'shared';
 import { GameRepo } from '../db/db';
+import { LAST_ITEM_INDEX } from '../constants';
 
 type Depencies = { Game: typeof GameRepo }
 type CTX = Context<{params:  Record<'id', string>;}>

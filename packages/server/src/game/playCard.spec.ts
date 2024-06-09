@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'bun:test';
 import { ADD_ONE, Game, NOT_FOUND_INDEX } from 'shared';
 import { playCard } from './playCard';
-import { FIRST_ARRAY_INDEX } from '../constants';
+import { FIRST_ARRAY_INDEX, LAST_ITEM_INDEX } from '../constants';
 import { createGame } from '../db/createGame';
 import { getHands } from '../utils/getHands';
 

@@ -2,6 +2,7 @@ import { Context, NotFoundError } from 'elysia';
 import { getPlayableCards } from '../game/getPlayableCards';
 import { Handler, MAX_PLAYER_COUNT, NOT_FOUND_INDEX, OrderedCard } from 'shared';
 import { GameRepo } from '../db/db';
+import { LAST_ITEM_INDEX } from '../constants';
 
 type Depencies = { Game: typeof GameRepo };
 type CTX = Context<{ query: Record<string, string | null>; params: Record<'id', string> }>;

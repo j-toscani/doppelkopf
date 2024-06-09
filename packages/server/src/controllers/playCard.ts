@@ -3,6 +3,7 @@ import { isCardId } from 'shared';
 import { playCard } from '../game/playCard';
 import { BadRequestError } from '../errors';
 import { GameRepo, UserRepo } from '../db/db';
+import { LAST_ITEM_INDEX } from '../constants';
 
 const bodySchema = t.Object({
 	card: t.String(),

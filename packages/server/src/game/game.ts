@@ -2,6 +2,7 @@ import { Game, GameOrder, OrderedCard, Picture, Color } from 'shared';
 import { applyOrder } from './orders/utils';
 import { ADD_ONE, MAX_PLAYER_COUNT } from 'shared/constants';
 import { findRoundWinner } from './findRoundWinner';
+import { LAST_ITEM_INDEX } from '../constants';
 
 export const changeGameOrder = (game: Game, order: GameOrder) => {
 	game.seats = game.seats.map((seat) => ({ ...seat, hand: applyOrder(seat.hand, order) }));

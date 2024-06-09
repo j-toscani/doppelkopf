@@ -52,7 +52,7 @@ describe('Play a Card', () => {
 		const hand = play();
 		expect(hand).toHaveLength(oldCardCount - ADD_ONE);
 		expect(hand.findIndex(({ id }) => card.id === id)).toBe(NOT_FOUND_INDEX);
-		expect(game.rounds.at(-1)).toBeTruthy();
+		expect(game.rounds.at(LAST_ITEM_INDEX)).toBeTruthy();
 	});
 
 	it('Trows error if card is played second time', () => {
@@ -63,8 +63,8 @@ describe('Play a Card', () => {
 		const play = () => playCard(game, player.user!, card.id);
 
 		play();
-		expect(game.rounds.at(-1)?.length).toBeTruthy();
-		expect(game.rounds.at(-1)?.[FIRST_ARRAY_INDEX]).toBeTruthy();
+		expect(game.rounds.at(LAST_ITEM_INDEX)?.length).toBeTruthy();
+		expect(game.rounds.at(LAST_ITEM_INDEX)?.[FIRST_ARRAY_INDEX]).toBeTruthy();
 
 		expect(play).toThrow();
 	});
@@ -75,10 +75,10 @@ describe('Play a Card', () => {
 
 		playCard(game, player.user!, card.id);
 
-		expect(game.rounds.at(-1)?.length).toBeTruthy();
-		expect(game.rounds.at(-1)?.[FIRST_ARRAY_INDEX]).toBeTruthy();
+		expect(game.rounds.at(LAST_ITEM_INDEX)?.length).toBeTruthy();
+		expect(game.rounds.at(LAST_ITEM_INDEX)?.[FIRST_ARRAY_INDEX]).toBeTruthy();
 
-		const cardOnTable = game.rounds.at(-1)?.[FIRST_ARRAY_INDEX];
+		const cardOnTable = game.rounds.at(LAST_ITEM_INDEX)?.[FIRST_ARRAY_INDEX];
 
 		expect(cardOnTable?.card.id).toBe(card.id);
 		expect(cardOnTable?.from).toBe(player.user?.name ?? '');

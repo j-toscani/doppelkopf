@@ -28,7 +28,7 @@ const checkFehlRound = (hand: Array<OrderedCard>, fehlColor: ColorV) => {
 };
 
 export const getPlayableCards = (
-	table: Game['rounds'][0],
+	table: Game['rounds'][number],
 	hand: Array<OrderedCard>,
 ): Array<OrderedCard> => {
 	const firstCard = table[FIRST_ARRAY_INDEX]?.card;

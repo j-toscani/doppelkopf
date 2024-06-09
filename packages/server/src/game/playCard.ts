@@ -1,4 +1,5 @@
 import { CardId, Game, OrderedCard, User } from 'shared';
+import { LAST_ITEM_INDEX } from '../constants';
 
 export const playCard = (game: Game, player: User, cardId: CardId): Array<OrderedCard> => {
 	if (game.seats[game.activeSeat] && player.name !== game.seats[game.activeSeat]?.user?.name)
@@ -12,7 +13,7 @@ export const playCard = (game: Game, player: User, cardId: CardId): Array<Ordere
 	if (!playerCard) throw new Error('Card not in players hand!');
 
 	game.seats[game.activeSeat].hand = playerHand.filter((card) => card.id !== cardId);
-	game.rounds.at(-1)!.push({ seat: game.activeSeat, card: playerCard, from: player.name });
+	game.rounds.at(LAST_ITEM_INDEX)!.push({ seat: game.activeSeat, card: playerCard, from: player.name });
 
 	return game.seats[game.activeSeat].hand;
 };

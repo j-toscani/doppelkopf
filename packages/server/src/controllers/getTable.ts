@@ -14,7 +14,7 @@ const handler: Handler<Depencies, CTX, Result> =
 		const game = await Game.findOne({ id });
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-		return { table: game.rounds.at(-1) ?? [] };
+		return { table: game.rounds.at(LAST_ITEM_INDEX) ?? [] };
 	};
 
 export default {

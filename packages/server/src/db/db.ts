@@ -25,11 +25,11 @@ const client = new MongoClient(environment.MONGODB_URL, {
 
 const getDb = async () => (await client).db(environment.MONGODB_DATABASENAME);
 
-export class BaseRepository<T extends Document> {
+export class BaseRepository<T extends Document, U = Partial<T>> {
 	collection: Promise<Collection<T>>;
-	create: (input?: Partial<T>) => T;
+	create: (input: U) => T;
 
-	constructor(collection: string, create: (input?: Partial<T>) => T) {
+	constructor(collection: string, create: (input: U) => T) {
 		this.collection = getDb().then((db) => db.collection<T>(collection));
 		this.create = create;
 	}
@@ -68,4 +68,4 @@ export class BaseRepository<T extends Document> {
 }
 
 export const UserRepo = new BaseRepository<User>('users', () => ({ name: '' }));
-export const GameRepo = new BaseRepository<Game>('games', createGame);
+export const GameRepo = new BaseRepository<Game, { users: Array<User>}>('games', createGame);

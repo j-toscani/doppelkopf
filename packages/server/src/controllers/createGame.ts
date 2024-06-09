@@ -20,7 +20,7 @@ const handler: Handler<Dependencies, CTX, Promise<{ id: string }>> =
 
 		if (!creator) throw new BadRequestError('Cannot create Game without user');
 
-		const game = Game.create({ seats: [creator] });
+		const game = Game.create({ users: [creator] });
 		await Game.insertOne(game);
 
 		return { id: game.id };

@@ -1,6 +1,7 @@
 import { Context, NotFoundError } from 'elysia';
 import { Handler, Table } from 'shared';
 import { GameRepo } from '../db/db';
+import { LAST_ITEM_INDEX } from '../constants';
 
 type Depencies = { Game: typeof GameRepo }
 type CTX = Context<{params:  Record<'id', string>;}>
@@ -14,7 +15,7 @@ const handler: Handler<Depencies, CTX, Result> =
 		const game = await Game.findOne({ id });
 		if (!game) throw new NotFoundError(`Game with [id] ${id} does not exist.`);
 
-		return { table: game.table };
+		return { table: game.rounds.at(LAST_ITEM_INDEX) ?? [] };
 	};
 
 export default {

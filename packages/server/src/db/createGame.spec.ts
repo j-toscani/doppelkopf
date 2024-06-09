@@ -1,27 +1,28 @@
 import { describe, expect, it } from 'bun:test';
 import { createGame } from './createGame';
-import { FIRST_ARRAY_INDEX } from '../constants';
-import { Color, FULL_HAND_OF_CARDS_COUNT, MAX_PLAYER_COUNT, Picture } from 'shared';
+import { FIRST_ARRAY_INDEX, LAST_ITEM_INDEX } from '../constants';
+import { Color, FULL_HAND_OF_CARDS_COUNT, Game, MAX_PLAYER_COUNT, Picture } from 'shared';
+import { getHands } from '../utils/getHands';
 
-const LAST_FROM_END = -1;
+const LAST_FROM_END = LAST_ITEM_INDEX;
 const players = ['1', '2', '3', '4'].map((name) => ({ name }));
-const game = createGame({ seats: players });
+const game: Game = createGame({ users: players });
 
 describe('Creating Game', () => {
 	it('Always starts with four hands and four seats', () => {
-		const game = createGame({ seats: [{ name: '1' }] });
-		expect(game.hands).toHaveLength(MAX_PLAYER_COUNT);
+		const game = createGame({ users: [{ name: '1' }] });
+		expect(getHands(game)).toHaveLength(MAX_PLAYER_COUNT);
 		expect(game.seats).toHaveLength(MAX_PLAYER_COUNT);
 	});
 
 	it('Sorts all hands', () => {
-		Object.values(game.hands).forEach((hand) => {
+		Object.values(getHands(game)).forEach((hand) => {
 			expect(hand.every((card, _index, all) => card.order <= all.at(LAST_FROM_END)!.order));
 		});
 	});
 
 	it('Uses default order (10 of Hearts is highest card)', () => {
-		const sortedCards = Object.values(game.hands)
+		const sortedCards = Object.values(getHands(game))
 			.flat()
 			.sort((a, b) => b.order - a.order);
 
@@ -30,14 +31,14 @@ describe('Creating Game', () => {
 	});
 
 	it('Creates a game with an empty table', () => {
-		const { table } = game;
+		const  table  = game.rounds.at(LAST_ITEM_INDEX);
 
 		expect(table).toBeArray();
 		expect(table).toBeEmpty();
 	});
 
 	it('Passes the same number of cards to every player', () => {
-		const hands = Object.values(game.hands);
+		const hands = Object.values(getHands(game));
 		const firstHand = hands[FIRST_ARRAY_INDEX];
 
 		expect(firstHand.length).toBe(FULL_HAND_OF_CARDS_COUNT);
@@ -47,6 +48,6 @@ describe('Creating Game', () => {
 	});
 
 	it('Sets the first player in argument as active player', () => {
-		expect(game.seats[game.activeSeat]).toBe(players[FIRST_ARRAY_INDEX]);
+		expect(game.seats[game.activeSeat].user).toBe(players[FIRST_ARRAY_INDEX]);
 	});
 });

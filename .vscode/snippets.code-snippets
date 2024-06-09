@@ -1,10 +1,4 @@
 {
-	"db_table": {
-		"prefix": ["db_table"],
-		"body": "import { createTable, runAllAndReturn, runOnceAndReturn } from './db';\n\ncreateTable(`${1:CREATE TABLE IF NOT EXISTS users (\n  id VARCHAR(36) PRIMARY KEY,\n  name VARCHAR(255) UNIQUE\n);}`)\n\ntype ${2:EntityName} = { $3 }\n\ntype ${2:EntityName}Params = { $4 }\n\nconst getAll = runAllAndReturn<${2:EntityName}, null>('')\nconst createOne = runOnceAndReturn<${2:EntityName}, ${2:EntityName}Params>('')\n// const getOneBy = runOnceAndReturn<EntityName, Pick<EntityNameParams, "">>("")",
-		"description": "Creates boilerplate code for a DB entity",
-		"scope": "javascript,typescript"
-	},
 	"controller": {
 		"prefix": ["controller"],
 		"body": "import { Context, t } from 'elysia';\nimport { Handler } from 'shared';\n\nconst bodySchema = t.Object({});\n\ntype CTX = Context<{body: (typeof bodySchema)['static']}>\ntype Adapter = { $1 }\ntype Result = { $2 }\n\nconst context = { body: bodySchema };\nconst handler: Handler<Adapter, CTX, Result> = ({ }) => ({ body }) => ({});\n\nexport default {\n	context,\n	handler: handler({ }),\n};",

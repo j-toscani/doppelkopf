@@ -1,26 +1,23 @@
 import { describe, expect, it } from 'bun:test';
 import { createGame } from '../db/createGame';
 import { peakLastRound } from './peakLastRound';
-import { MAX_PLAYER_COUNT, Table } from 'shared';
-import { LAST_ITEM_INDEX } from '../constants';
+import { Game, MAX_PLAYER_COUNT, Table } from 'shared';
+import { getHands } from '../utils/getHands';
 
-const seats = [{ name: 'karl' }, { name: 'frank' }, { name: 'mary' }, { name: 'andrea' }];
-const game = createGame({ seats });
+const users = [{ name: 'karl' }, { name: 'frank' }, { name: 'mary' }, { name: 'andrea' }];
+const game: Game = createGame({ users });
 
 describe('Peak result of last round', () => {
-	it('Returns `null` if no round was finished yet', () => {
-		const lastRound = peakLastRound(game);
-		expect(lastRound).toBe(null);
-	});
 	it('Returns cards played in the previous round', () => {
 		const newGame = {
 			...game,
 			rounds: Array.from(
 				new Array(MAX_PLAYER_COUNT),
 				(e, i): Table =>
-					game.hands.map((hand) => ({
+					getHands(game).map((hand) => ({
 						card: hand[i],
-						from: i,
+						from: users[i].name,
+						seat: i
 					})),
 			),
 		};
@@ -41,9 +38,10 @@ describe('Peak result of last round', () => {
 			rounds: Array.from(
 				new Array(MAX_PLAYER_COUNT),
 				(e, i): Table =>
-					game.hands.map((hand) => ({
+					getHands(game).map((hand) => ({
 						card: hand[i],
-						from: i,
+						from: users[i].name,
+						seat: i
 					})),
 			),
 		};

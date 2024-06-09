@@ -1,6 +1,7 @@
 export const NOT_FOUND_INDEX = -1;
 export const EMPTY_HAND_COUNT = 0;
-export const NO_CARDS_PLAYED = 0;
+export const NO_CARDS_PLAYED = EMPTY_HAND_COUNT;
+export const FIRST_ARRAY_INDEX = NO_CARDS_PLAYED;
 export const HALF_CARD_WIDTH_REM = 2;
 export const MAX_PLAYER_COUNT = 4;
 export const ADD_ONE = 1;

@@ -53,7 +53,7 @@ export type GameOrderEntry = { trump: boolean; order: number };
 export type GameOrder = Record<CardId, GameOrderEntry>;
 export type DealtHands<C = OrderedCard> = [Array<C>, Array<C>, Array<C>, Array<C>];
 
-export type Table = Array<{ card: OrderedCard; from: number }>;
+export type Table = Array<{ card: OrderedCard; from: string, seat: number }>;
 
 export type TablePosition = (typeof TablePositions)[keyof typeof TablePositions];
 

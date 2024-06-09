@@ -3,6 +3,7 @@ import { isCardId } from 'shared';
 import { playCard } from '../game/playCard';
 import { BadRequestError } from '../errors';
 import { GameRepo, UserRepo } from '../db/db';
+import { LAST_ITEM_INDEX } from '../constants';
 
 const bodySchema = t.Object({
 	card: t.String(),
@@ -33,7 +34,7 @@ const handler =
 		const updatedHand = playCard(game, user, body.card);
 
 		return {
-			table: game.table,
+			table: game.rounds.at(LAST_ITEM_INDEX),
 			hand: updatedHand,
 		};
 	};

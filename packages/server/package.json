@@ -8,6 +8,7 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
+    "@simplewebauthn/types": "^10.0.0",
     "elysia": "latest",
     "mongodb": "^6.3.0",
     "shared": "file:../shared"

@@ -11,9 +11,10 @@ import {
 	UpdateFilter,
 	UpdateOptions,
 } from 'mongodb';
-import { Game, User } from 'shared';
+import { Game, User, Passkey, StoredKeyCredentialCreationOptions } from 'shared';
 import { environment } from '../environment';
 import { createGame } from './createGame';
+import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types';
 
 const client = new MongoClient(environment.MONGODB_URL, {
 	auth: {
@@ -68,4 +69,12 @@ export class BaseRepository<T extends Document, U = Partial<T>> {
 }
 
 export const UserRepo = new BaseRepository<User>('users', () => ({ name: '' }));
-export const GameRepo = new BaseRepository<Game, { users: Array<User>}>('games', createGame);
+export const StoredKeyCredentialCreationOptionsRepo = new BaseRepository<
+	StoredKeyCredentialCreationOptions,
+	StoredKeyCredentialCreationOptions
+>('passkeys', (input: { user: string; options: PublicKeyCredentialCreationOptionsJSON }) => input);
+export const PasskeyRepo = new BaseRepository<Passkey, Passkey>(
+	'passkeys',
+	(passkey: Passkey) => passkey,
+);
+export const GameRepo = new BaseRepository<Game, { users: Array<User> }>('games', createGame);

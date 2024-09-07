@@ -8,15 +8,15 @@
     "dev": "bun run --watch src/index.ts"
   },
   "dependencies": {
-    "@simplewebauthn/types": "^10.0.0",
     "elysia": "latest",
     "mongodb": "^6.3.0",
     "shared": "file:../shared"
   },
   "devDependencies": {
-    "bun-types": "latest",
+    "@simplewebauthn/types": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "bun-types": "latest",
     "eslint": "^8.49.0",
     "typescript": "^5.0.0"
   },

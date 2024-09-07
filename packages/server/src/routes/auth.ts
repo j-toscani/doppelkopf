@@ -5,7 +5,6 @@ import { environment } from '../environment';
 import loginUser from '../controllers/loginUser';
 import { PasskeyRepo, StoredKeyCredentialCreationOptionsRepo, UserRepo } from '../db/db';
 import { BadRequestError, NotFoundError } from '../errors';
-import { Logger } from '../logger';
 import { Passkey } from 'shared';
 
 const app = new Elysia({ prefix: '/auth' });

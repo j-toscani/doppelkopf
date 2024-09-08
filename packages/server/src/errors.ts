@@ -41,7 +41,7 @@ export class InternalServerError extends ApiError {
 	}
 }
 
-export const handleError: ErrorHandler = ({ error: _error }) => {
+export const handleError = ({ error: _error }: { error: Error }) => {
 	Logger.error(_error.message);
 	const error =
 		_error instanceof ApiError

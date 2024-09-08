@@ -5,8 +5,11 @@ import getTableConfig from '../controllers/getTable';
 import getGames from '../controllers/getGames';
 import getHandConfig from '../controllers/getHand';
 import getGame from '../controllers/getGame';
+import { addSessionGuard } from '../utils/session';
 
-const app = new Elysia({ prefix: '/games' });
+const app = new Elysia({ prefix: '/games' })
+
+addSessionGuard(app)
 
 app.get('/', getGames.handler);
 app.put('/new', createGameConfig.handler, createGameConfig.context);
